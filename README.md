@@ -1,6 +1,4 @@
-
-# flutter_file_structure
-
+# lumistone
 
 A new Flutter project.
 
