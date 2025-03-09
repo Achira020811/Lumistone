@@ -1,4 +1,5 @@
 
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});
 
@@ -28,6 +30,7 @@ class SignUpPage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
+
           Container(
             decoration: const BoxDecoration(
               gradient: LinearGradient(
@@ -36,20 +39,24 @@ class SignUpPage extends StatelessWidget {
                   Color.fromARGB(255, 243, 182, 216),
                   Color.fromARGB(255, 179, 123, 154),
                   Color.fromARGB(255, 146, 73, 114),
+
                 ],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
               ),
             ),
           ),
+
           Center(
             child: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+
                     const CircleAvatar(
                       backgroundImage: AssetImage('assets/gem_logo.png'),
                       radius: 60,
@@ -57,10 +64,12 @@ class SignUpPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 50),
                     const Text(
+
                       'Get Started',
                       style: TextStyle(
                         fontSize: 40,
                         fontWeight: FontWeight.bold,
+
                         color: Colors.black,
                       ),
                     ),
@@ -128,10 +137,12 @@ class _LoginPageState extends State<LoginPage> {
   final _passwordController = TextEditingController();
   bool _obscurePassword = true;
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+
         title: const Text('Login'),
         backgroundColor: const Color.fromARGB(255, 243, 182, 216),
       ),

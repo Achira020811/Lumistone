@@ -63,7 +63,9 @@ flutter:
     - assets/
     - assets/gem_logo.png
     - assets/gem_background.jpg
+
     - assets/gem_logo.png
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

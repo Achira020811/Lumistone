@@ -55,15 +55,13 @@ class SignUpPage extends StatelessWidget {
                   children: [
                     // Logo
                     CircleAvatar(
-
-                      backgroundImage: AssetImage('assets/gem_logo.png'),
-
+                      backgroundImage: AssetImage('images/gem_logo.png'),
                       radius: 60,
                       backgroundColor: Colors.transparent,
                     ),
                     SizedBox(height: 50),
                     Text(
-                      'FORGOT PASSWORD',
+                      'LOG IN',
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w500,
@@ -72,26 +70,23 @@ class SignUpPage extends StatelessWidget {
                     ),
                     SizedBox(height: 20),
                     // Username Field
-                    _buildTextField('PHONE NUMBER...'),
+                    _buildTextField('USERNAME'),
                     SizedBox(height: 5),
                     // Mobile Field
-                    _buildTextField('NEW PASSWORD...', obscureText: true),
-                    SizedBox(height: 5),
-                    // Email Field
-                    _buildTextField('CONFIRM PASSWORD...', obscureText: true),
+                    _buildTextField('PASSWORD'),
                     SizedBox(height: 5),
 
-                    SizedBox(height: 170),
-                    // Change password Button
+                    SizedBox(height: 200),
+                    // Log in Button
                     SizedBox(
-                      width: 300, // Reduced button width
+                      width: 200,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(50),
                           ),
-                          padding: EdgeInsets.symmetric(vertical: 2),
+                          padding: EdgeInsets.symmetric(vertical: 1),
                         ),
                         onPressed: () {
                           Navigator.push(
@@ -102,7 +97,7 @@ class SignUpPage extends StatelessWidget {
                           );
                         },
                         child: Text(
-                          'Change Password',
+                          'Log in',
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 30,
