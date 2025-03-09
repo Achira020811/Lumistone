@@ -1,6 +1,8 @@
 {
-    "name": "lumistone",
-    "short_name": "lumistone",
+
+    "name": "flutter_file_structure",
+    "short_name": "flutter_file_structure",
+
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
