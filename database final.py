@@ -63,4 +63,34 @@ class User:
         conn.commit()
         print("User deleted successfully!")
 
+# WaterDetection Class
+class WaterDetection:
+    def __init__(self, zone, depth_scanned, result, remarks=""):
+        self.zone = zone
+        self.depth_scanned = depth_scanned
+        self.result = result
+        self.remarks = remarks
+        self.date = datetime.now().strftime("%Y-%m-%d")
+        self.time = datetime.now().strftime("%H:%M:%S")
+
+    def save_to_db(self):
+        cursor.execute('''
+        INSERT INTO ScanResults (Date, Time, Zone, DepthScanned, Result, Remarks)
+        VALUES (?, ?, ?, ?, ?, ?)
+        ''', (self.date, self.time, self.zone, self.depth_scanned, self.result, self.remarks))
+        conn.commit()
+        print("Scan result saved successfully!")
+
+    @staticmethod
+    def get_all_scans():
+        cursor.execute("SELECT * FROM ScanResults")
+        return cursor.fetchall()
+
+    @staticmethod
+    def delete_scan(scan_id):
+        cursor.execute("DELETE FROM ScanResults WHERE ScanID = ?", (scan_id,))
+        conn.commit()
+        print("Scan result deleted successfully!")
+
+
 
