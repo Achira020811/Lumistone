@@ -18,3 +18,25 @@ CREATE TABLE IF NOT EXISTS Users (
 ''')
 conn.commit()
 
+class User:
+    def __init__(self, full_name, email, phone_number, role):
+        self.full_name = full_name
+        self.email = email
+        self.phone_number = phone_number
+        self.role = role
+        self.date_of_registration = datetime.now().strftime("%Y-%m-%d")
+
+    def save_to_db(self):
+        # Check if the email already exists
+        cursor.execute("SELECT Email FROM Users WHERE Email = ?", (self.email,))
+        if cursor.fetchone():
+            print(f"Error: Email '{self.email}' is already registered.")
+        else:
+            cursor.execute('''
+            INSERT INTO Users (FullName, Email, PhoneNumber, Role, DateOfRegistration)
+            VALUES (?, ?, ?, ?, ?)
+            ''', (self.full_name, self.email, self.phone_number, self.role, self.date_of_registration))
+            conn.commit()
+            print("User saved successfully!")
+
+
