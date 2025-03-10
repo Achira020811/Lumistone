@@ -39,4 +39,25 @@ class User:
             conn.commit()
             print("User saved successfully!")
 
+    
+    @staticmethod
+    def get_all_users():
+        cursor.execute("SELECT * FROM Users")
+        return cursor.fetchall()
+
+    @staticmethod
+    def delete_user(user_id):
+        cursor.execute("DELETE FROM Users WHERE UserID = ?", (user_id,))
+        conn.commit()
+        print(f"User with ID {user_id} deleted successfully!")
+
+    @staticmethod
+    def get_user_details():
+        print("Please enter user details:")
+        full_name = input("Full Name: ")
+        email = input("Email: ")
+        phone_number = input("Phone Number: ")
+        role = input("Role (e.g., Miner, Supervisor, Admin): ")
+        return User(full_name, email, phone_number, role)
+
 
