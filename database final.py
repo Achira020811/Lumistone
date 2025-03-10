@@ -52,3 +52,15 @@ class User:
             conn.commit()
             print("User saved successfully!")
 
+     @staticmethod
+    def get_all_users():
+        cursor.execute("SELECT * FROM Users")
+        return cursor.fetchall()
+
+    @staticmethod
+    def delete_user(user_id):
+        cursor.execute("DELETE FROM Users WHERE UserID = ?", (user_id,))
+        conn.commit()
+        print("User deleted successfully!")
+
+
