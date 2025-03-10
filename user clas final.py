@@ -59,5 +59,23 @@ class User:
         phone_number = input("Phone Number: ")
         role = input("Role (e.g., Miner, Supervisor, Admin): ")
         return User(full_name, email, phone_number, role)
+# Example Usage
+if __name__ == "__main__":
+    # Get user details from input
+    new_user = User.get_user_details()
+
+    # Save the user to the database
+    new_user.save_to_db()
+
+    # Fetch and display all users
+    print("\nAll Users in Database:")
+    users = User.get_all_users()
+    for user in users:
+        print(user)
+
+    # Delete a user by ID (example)
+    # user_id_to_delete = int(input("\nEnter User ID to delete: "))
+    # User.delete_user(user_id_to_delete)
+
 
 
