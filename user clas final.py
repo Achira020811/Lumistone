@@ -77,5 +77,8 @@ if __name__ == "__main__":
     # user_id_to_delete = int(input("\nEnter User ID to delete: "))
     # User.delete_user(user_id_to_delete)
 
+# Close the database connection
+conn.close()
+
 
 
