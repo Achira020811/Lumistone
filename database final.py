@@ -92,5 +92,30 @@ class WaterDetection:
         conn.commit()
         print("Scan result deleted successfully!")
 
+# Example Usage
+if __name__ == "__main__":
+    # Create a new user
+    user1 = User("John Doe", "john.doe@example.com", "+1234567890", "Miner")
+    user1.save_to_db()
+
+    # Try to create another user with the same email (should fail)
+    user2 = User("Jane Doe", "john.doe@example.com", "+9876543210", "Supervisor")
+    user2.save_to_db()
+
+    # Create a new scan result
+    scan1 = WaterDetection("Zone A", 10.5, "Not Safe (Water detected at 10.5m)", "High water level, avoid digging.")
+    scan1.save_to_db()
+
+    # Fetch all users
+    print("All Users:")
+    print(User.get_all_users())
+
+    # Fetch all scan results
+    print("All Scan Results:")
+    print(WaterDetection.get_all_scans())
+
+# Close the database connection
+conn.close()
+
 
 
