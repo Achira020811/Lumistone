@@ -17,3 +17,16 @@ CREATE TABLE IF NOT EXISTS Users (
 )
 ''')
 
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS ScanResults (
+    ScanID INTEGER PRIMARY KEY AUTOINCREMENT,
+    Date TEXT,
+    Time TEXT,
+    Zone TEXT,
+    DepthScanned REAL,
+    Result TEXT,
+    Remarks TEXT
+)
+''')
+conn.commit()
+
