@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_file_structure/login.dart';
-import 'package:flutter_file_structure/signup.dart';
+import 'package:lumistone/login.dart';
+import 'package:lumistone/signup.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MyApp1());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp1 extends StatelessWidget {
+  const MyApp1({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,7 @@ class MainLogPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const CircleAvatar(
-                      backgroundImage: AssetImage('images/gem_logo.png'),
+                      backgroundImage: AssetImage('assets/gem_logo.png'),
                       radius: 60,
                       backgroundColor: Colors.transparent,
                     ),
@@ -174,7 +174,7 @@ class MainLogPage extends StatelessWidget {
 //                     suffixIcon: IconButton(
 //                       icon: Icon(
 //                         _obscurePassword
-//                             ? Icons.visibility_off
+                            // ? Icons.visibility_off
 //                             : Icons.visibility,
 //                       ),
 //                       onPressed: () {

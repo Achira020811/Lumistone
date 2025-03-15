@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lumistone/main_log.dart';
 
 void main() {
   runApp(MyApp());
@@ -104,8 +105,11 @@ class CommonPage extends StatelessWidget {
 
                 // Log Out Button
                 ElevatedButton(
-                  onPressed: () {
-                    // Log out action
+                  onPressed: () => {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) =>MyApp1()),
+                      ),
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
