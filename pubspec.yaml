@@ -66,6 +66,9 @@ flutter:
   assets:
 
     - assets/
+    - images/gem_logo.png
+    - images/gem_background.jpg
+
     
 
 
