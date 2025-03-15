@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_file_structure/signup.dart';
+import 'forgot_password.dart'; // Import the ForgotPasswordPage
 
 void main() {
   runApp(LumistoneApp());
@@ -42,8 +44,8 @@ class LoginPage extends StatelessWidget {
                 end: Alignment.bottomCenter,
               ),
               image: DecorationImage(
-                image: AssetImage('assets/gem_background.jpg'),
-                fit: BoxFit.cover,
+                image: AssetImage('images/gem_bg.png'),
+                //fit: BoxFit.cover,
               ),
             ),
           ),
@@ -152,8 +154,7 @@ class LoginPage extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => SignUpPage(),
-                              ),
+                                  builder: (context) => SignUpPage()),
                             );
                           },
                           child: Text(
@@ -177,20 +178,6 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-class ForgotPasswordPage extends StatelessWidget {
-  const ForgotPasswordPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Forgot Password')),
-      body: Center(
-        child: Text('Forgot Password Page'),
-      ),
-    );
-  }
-}
-
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
@@ -205,16 +192,14 @@ class HomePage extends StatelessWidget {
   }
 }
 
-class SignUpPage extends StatelessWidget {
-  const SignUpPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Sign Up')),
-      body: Center(
-        child: Text('Sign Up Page'),
-      ),
-    );
-  }
-}
+// class SignUpPage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(title: Text('Sign Up')),
+//       body: Center(
+//         child: Text('Sign Up Page'),
+//       ),
+//     );
+//   }
+// }

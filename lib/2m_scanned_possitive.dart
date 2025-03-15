@@ -58,7 +58,6 @@ class _ScanResultScreenState extends State<ScanResultScreen>
             colors: [
               Colors.white,
               Color.fromARGB(255, 250, 219, 230),
-              Color.fromARGB(255, 146, 73, 114),
             ],
           ),
         ),
@@ -86,7 +85,7 @@ class _ScanResultScreenState extends State<ScanResultScreen>
               child: const Icon(
                 Icons.check_circle,
                 size: 200,
-                color: Color.fromARGB(255, 7, 222, 14),
+                color: Color.fromRGBO(214, 24, 132, 1),
               ),
             ),
             const SizedBox(height: 100),

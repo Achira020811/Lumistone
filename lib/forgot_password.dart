@@ -1,5 +1,17 @@
 import 'package:flutter/material.dart';
 
+// class ForgotPasswordPage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(title: Text('Forgot Password')),
+//       body: Center(
+//         child: Text('Forgot Password Page'),
+//       ),
+//     );
+//   }
+// }
+
 void main() {
   runApp(LumistoneApp());
 }
@@ -15,13 +27,13 @@ class LumistoneApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.pink,
       ),
-      home: SignUpPage(),
+      home: ForgotPasswordPage(),
     );
   }
 }
 
-class SignUpPage extends StatelessWidget {
-  const SignUpPage({super.key});
+class ForgotPasswordPage extends StatelessWidget {
+  const ForgotPasswordPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -95,8 +107,7 @@ class SignUpPage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => HomePage(),
-                            ),
+                                builder: (context) => ForgotPasswordPage()),
                           );
                         },
                         child: Text(
@@ -134,21 +145,19 @@ class SignUpPage extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Home Page'),
-      ),
-      body: Center(
-        child: Text(
-          'Welcome to Lumistone!',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
-    );
-  }
-}
+// class HomePage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Home Page'),
+//       ),
+//       body: Center(
+//         child: Text(
+//           'Welcome to Lumistone!',
+//           style: TextStyle(fontSize: 20),
+//         ),
+//       ),
+//     );
+//   }
+// }
