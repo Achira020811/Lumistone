@@ -61,7 +61,7 @@ class _ScanResultScreenState extends State<ScanResultScreen>
             colors: [
               Colors.white,
               Color.fromARGB(255, 250, 219, 230),
-              Color.fromARGB(255, 146, 73, 114),
+              Color.fromRGBO(146, 73, 114, 1),
             ],
           ),
         ),
