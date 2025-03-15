@@ -5,6 +5,8 @@ void main() {
 }
 
 class LumistoneApp extends StatelessWidget {
+  const LumistoneApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,6 +21,8 @@ class LumistoneApp extends StatelessWidget {
 }
 
 class SignUpPage extends StatelessWidget {
+  const SignUpPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -135,6 +139,8 @@ class SignUpPage extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
