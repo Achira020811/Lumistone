@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_file_structure/signup.dart';
+import 'package:lumistone/MainMenu.dart';
+import 'package:lumistone/signup.dart';
 import 'forgot_password.dart'; // Import the ForgotPasswordPage
 
 void main() {
@@ -44,7 +45,7 @@ class LoginPage extends StatelessWidget {
                 end: Alignment.bottomCenter,
               ),
               image: DecorationImage(
-                image: AssetImage('images/gem_bg.png'),
+                image: AssetImage('assets/gem_bg.png'),
                 //fit: BoxFit.cover,
               ),
             ),
@@ -124,7 +125,7 @@ class LoginPage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => HomePage(),
+                              builder: (context) => MyApp(),
                             ),
                           );
                         },

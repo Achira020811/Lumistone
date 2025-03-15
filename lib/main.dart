@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:lumistone/FrontPage2.dart';
-
-
-import 'package:lumistone/MainMenu.dart';
+import 'package:lumistone/main_log.dart';
 
 void main() {
   runApp(MyApp());
@@ -37,7 +35,7 @@ class Screen1 extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: AnimatedSplashScreen(
         splash: GradientBackgroundScreen(),
-        nextScreen: HomePage(),
+        nextScreen: MyApp1(),
         splashIconSize: double.infinity,
         duration: 3000,
         splashTransition: SplashTransition.scaleTransition,animationDuration:Duration(milliseconds: 1000),  
