@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatelessWidget {
+  const SignUpPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -122,6 +124,8 @@ class SignUpPage extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -140,6 +144,8 @@ class HomePage extends StatelessWidget {
 
 // Placeholder for the sign-up page
 class SignUpFormPage extends StatelessWidget {
+  const SignUpFormPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
