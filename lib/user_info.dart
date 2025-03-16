@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+class ResultInfoScreen extends StatefulWidget {
+  @override
+  _ResultInfoScreenState createState() => _ResultInfoScreenState();
+}
+
 // void main() {
 //   runApp(MyApp());
 // }
