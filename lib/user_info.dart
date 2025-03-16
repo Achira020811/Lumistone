@@ -82,10 +82,20 @@ class _ResultInfoScreenState extends State<ResultInfoScreen> {
                     _buildInfoField('Scan ID'),
                     _buildInfoField('Data'),
                     _buildInfoField('Time'),
-                    _buildRadioField('Zone', ['A', 'B', 'C', 'D']),
-                    _buildRadioField('Depth Scanned', ['100m', '200m', '300m']),
+                    _buildRadioField(
+                        'Zone', ['A', 'B', 'C', 'D'], _selectedZone, (value) {
+                      setState(() {
+                        _selectedZone = value;
+                      });
+                    }),
+                    _buildRadioField('Depth Scanned', ['100m', '200m', '300m'],
+                        _selectedDepth, (value) {
+                      setState(() {
+                        _selectedDepth = value;
+                      });
+                    }),
                     _buildInfoField('Result'),
-                    _buildInfoField('Remark'),
+                    _buildRemarkField(),
                   ],
                 ),
               ),
@@ -101,7 +111,7 @@ class _ResultInfoScreenState extends State<ResultInfoScreen> {
       padding: const EdgeInsets.symmetric(vertical: 6.0),
       child: Container(
         decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 255, 255, 255),
+          color: Colors.white,
           borderRadius: BorderRadius.circular(20),
         ),
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
@@ -123,12 +133,13 @@ class _ResultInfoScreenState extends State<ResultInfoScreen> {
     );
   }
 
-  Widget _buildRadioField(String label, List<String> options) {
+  Widget _buildRadioField(
+      String label, List<String> options, String? selectedValue, Function(String?) onChanged) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6.0),
       child: Container(
         decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 255, 255, 255),
+          color: Colors.white,
           borderRadius: BorderRadius.circular(20),
         ),
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
@@ -148,10 +159,11 @@ class _ResultInfoScreenState extends State<ResultInfoScreen> {
               children: options.map((option) {
                 return Row(
                   children: [
-                    Radio(
+                    Radio<String>(
                       value: option,
-                      groupValue: null,
-                      onChanged: (value) {},
+                      groupValue: selectedValue,
+                      onChanged: onChanged,
+                      activeColor: Colors.purple,
                     ),
                     Text(option, style: TextStyle(color: Colors.black)),
                   ],
@@ -163,4 +175,3 @@ class _ResultInfoScreenState extends State<ResultInfoScreen> {
       ),
     );
   }
-}
