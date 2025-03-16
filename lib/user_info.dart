@@ -19,7 +19,11 @@ class ResultInfoScreen extends StatefulWidget {
 //   }
 // }
 
-class ResultInfoScreen extends StatelessWidget {
+class _ResultInfoScreenState extends State<ResultInfoScreen> {
+  String? _selectedZone;
+  String? _selectedDepth;
+  TextEditingController _remarkController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
