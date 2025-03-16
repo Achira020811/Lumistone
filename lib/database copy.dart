@@ -25,10 +25,6 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   TextEditingController roleController = TextEditingController();
   TextEditingController dateController = TextEditingController();
 
-
-class ResultInfoScreen extends StatelessWidget {
-  const ResultInfoScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,18 +73,15 @@ class ResultInfoScreen extends StatelessWidget {
                   ),
                 ),
               ),
-                    _buildInfoField('Scan ID'),
-                    _buildInfoField('Data'),
-                    _buildInfoField('Time'),
-                    _buildRadioField('Zone', ['A', 'B', 'C', 'D']),
-                    _buildRadioField('Depth Scanned', ['100m', '200m', '300m']),
-                    _buildInfoField('Result'),
-                    _buildInfoField('Remark'),
-                  ],
-                ),
-              ),
-            ),
-          ],
+              SizedBox(height: 20),
+              _buildInfoField('User ID'),
+              _buildTextField('Full Name', fullNameController),
+              _buildInfoField('Email'),
+              _buildInfoField('Phone Number'),
+              _buildTextField('Role', roleController),
+              _buildTextField('Date of Registration', dateController),
+            ],
+          ),
         ),
       ),
     );
@@ -99,7 +92,7 @@ class ResultInfoScreen extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 6.0),
       child: Container(
         decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 255, 255, 255),
+          color: const Color.fromARGB(255, 255, 247, 250),
           borderRadius: BorderRadius.circular(20),
         ),
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
@@ -121,42 +114,23 @@ class ResultInfoScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildRadioField(String label, List<String> options) {
+  Widget _buildTextField(String label, TextEditingController controller) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6.0),
       child: Container(
         decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 255, 255, 255),
+          color: const Color.fromARGB(255, 255, 247, 250),
           borderRadius: BorderRadius.circular(20),
         ),
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              label,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: options.map((option) {
-                return Row(
-                  children: [
-                    Radio(
-                      value: option,
-                      groupValue: null,
-                      onChanged: (value) {},
-                    ),
-                    Text(option, style: TextStyle(color: Colors.black)),
-                  ],
-                );
-              }).toList(),
-            ),
-          ],
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+        child: TextField(
+          controller: controller,
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText: label,
+            hintStyle: TextStyle(color: Colors.black54),
+          ),
+          style: TextStyle(color: Colors.black),
         ),
       ),
     );
