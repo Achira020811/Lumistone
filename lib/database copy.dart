@@ -5,6 +5,27 @@ void main() {
   runApp(MyApp());
 }
 
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: UserInfoScreen(),
+    );
+  }
+}
+
+class UserInfoScreen extends StatefulWidget {
+  @override
+  _UserInfoScreenState createState() => _UserInfoScreenState();
+}
+
+class _UserInfoScreenState extends State<UserInfoScreen> {
+  TextEditingController fullNameController = TextEditingController();
+  TextEditingController roleController = TextEditingController();
+  TextEditingController dateController = TextEditingController();
+
+
 class ResultInfoScreen extends StatelessWidget {
   const ResultInfoScreen({super.key});
 
