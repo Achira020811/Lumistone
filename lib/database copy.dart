@@ -34,12 +34,12 @@ class ResultInfoScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 230, 84, 166),
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Row(
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
@@ -57,33 +57,26 @@ class ResultInfoScreen extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: Text(
-                'Result Information Table,',
+              SizedBox(height: 4),
+              Text(
+                'User Information Table,',
                 style: TextStyle(
                   fontSize: 14,
                   color: Colors.white70,
                 ),
               ),
-            ),
-            SizedBox(height: 10),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Image.asset(
-                'lib/assets/pic1.jpg',
-                height: 150,
-                width: double.infinity,
-                fit: BoxFit.cover,
+              SizedBox(height: 20),
+              Center(
+                child: CircleAvatar(
+                  radius: 40,
+                  backgroundColor: Colors.black,
+                  child: Icon(
+                    Icons.person,
+                    color: Colors.white,
+                    size: 50,
+                  ),
+                ),
               ),
-            ),
-            SizedBox(height: 10),
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.all(16.0),
-                child: ListView(
-                  children: [
                     _buildInfoField('Scan ID'),
                     _buildInfoField('Data'),
                     _buildInfoField('Time'),
