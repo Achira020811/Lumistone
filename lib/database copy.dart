@@ -1,20 +1,13 @@
+import 'package:demo/DataBase/database.dart';
 import 'package:flutter/material.dart';
 
-// void main() {
-//   runApp(MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       home: ResultInfoScreen(),
-//     );
-//   }
-// }
+void main() {
+  runApp(MyApp());
+}
 
 class ResultInfoScreen extends StatelessWidget {
+  const ResultInfoScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
