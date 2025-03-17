@@ -117,20 +117,18 @@ if __name__ == "__main__":
     user2 = User("Jane Doe", "john.doe@example.com", "+9876543210", "Supervisor")
     user2.save_to_db()
 
-    # Create a new scan result
-    scan1 = WaterDetection("Zone A", 10.5, "Not Safe (Water detected at 10.5m)", "High water level, avoid digging.")
+    # Create a new scan result with water detection data
+    scan1 = WaterDetection(
+        zone="Zone A",
+        depth_scanned=10.5,
+        result="Water Detected",  # Replace with actual result
+        dist=100.0,               # Replace with actual 'dist'
+        x_nad83=500000.0,         # Replace with actual 'x_nad83'
+        y_nad83=4500000.0,        # Replace with actual 'y_nad83'
+        elev=50.0,                # Replace with actual 'elev'
+        prediction=1,             # Replace with actual prediction from ML model
+        remarks="High water level, avoid digging."
+    )
     scan1.save_to_db()
-
-    # Fetch all users
-    print("All Users:")
-    print(User.get_all_users())
-
-    # Fetch all scan results
-    print("All Scan Results:")
-    print(WaterDetection.get_all_scans())
-
-# Close the database connection
-conn.close()
-
 
 
