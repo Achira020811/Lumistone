@@ -5,6 +5,7 @@ from datetime import datetime
 conn = sqlite3.connect('gem_mining.db')
 cursor = conn.cursor()
 
+
 # Create tables for User and Scan Results
 cursor.execute('''
 CREATE TABLE IF NOT EXISTS Users (
