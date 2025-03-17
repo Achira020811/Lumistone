@@ -87,9 +87,12 @@ class WaterDetection:
 
     def save_to_db(self):
         cursor.execute('''
-        INSERT INTO ScanResults (Date, Time, Zone, DepthScanned, Result, Remarks)
-        VALUES (?, ?, ?, ?, ?, ?)
-        ''', (self.date, self.time, self.zone, self.depth_scanned, self.result, self.remarks))
+        INSERT INTO ScanResults (Date, Time, Zone, DepthScanned, Result, Remarks, Dist, X_NAD83, Y_NAD83, Elev, Prediction)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ''', (
+            self.date, self.time, self.zone, self.depth_scanned, self.result, self.remarks,
+            self.dist, self.x_nad83, self.y_nad83, self.elev, self.prediction
+        ))
         conn.commit()
         print("Scan result saved successfully!")
 
