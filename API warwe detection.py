@@ -63,3 +63,6 @@ def predict():
     # Make a prediction using the model
     prediction = (model.predict(input_data_normalized) > 0.5).astype(int)[0][0]
 
+    # Save the prediction to the database
+    save_prediction(dist, x_nad83, y_nad83, elev, int(prediction))
+
