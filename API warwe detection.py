@@ -70,3 +70,8 @@ def predict():
     result = {'prediction': int(prediction)}
     return jsonify(result)
 
+# Run the Flask app
+if __name__ == '__main__':
+    create_table()  # Ensure the table exists
+    app.run(debug=True)
+
