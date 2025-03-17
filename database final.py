@@ -26,7 +26,12 @@ CREATE TABLE IF NOT EXISTS ScanResults (
     Zone TEXT,
     DepthScanned REAL,
     Result TEXT,
-    Remarks TEXT
+    Remarks TEXT,
+    Dist REAL,              # New column for 'dist'
+    X_NAD83 REAL,           # New column for 'x_nad83'
+    Y_NAD83 REAL,           # New column for 'y_nad83'
+    Elev REAL,              # New column for 'elev'
+    Prediction INTEGER      # New column for prediction result (0 or 1)
 )
 ''')
 conn.commit()
