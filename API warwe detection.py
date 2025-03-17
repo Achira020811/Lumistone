@@ -13,3 +13,7 @@ model = tf.keras.models.load_model('water_detection_model.h5')  # Save your mode
 
 # Database setup
 DATABASE = 'water_detection.db'
+
+# Load mean and std for normalization (from training)
+mean = np.array([...])  # Replace with your training data mean
+std = np.array([...])   # Replace with your training data std
