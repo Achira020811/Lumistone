@@ -46,4 +46,14 @@ def save_prediction(dist, x_nad83, y_nad83, elev, prediction):
     conn.commit()
     conn.close()
 
+# Define the API endpoint
+@app.route('/predict', methods=['POST'])
+def predict():
+    # Get user input
+    data = request.json
+    dist = float(data['dist'])
+    x_nad83 = float(data['x_nad83'])
+    y_nad83 = float(data['y_nad83'])
+    elev = float(data['elev'])
+
 
