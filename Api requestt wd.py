@@ -13,3 +13,5 @@ data = {
 # Send a POST request
 response = requests.post(url, json=data)
 
+# Print the response
+print(response.json())
