@@ -56,4 +56,7 @@ def predict():
     y_nad83 = float(data['y_nad83'])
     elev = float(data['elev'])
 
+    # Preprocess the input (normalization)
+    input_data = np.array([[dist, x_nad83, y_nad83, elev]])
+    input_data_normalized = (input_data - mean) / std
 
