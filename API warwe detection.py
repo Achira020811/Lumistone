@@ -60,3 +60,6 @@ def predict():
     input_data = np.array([[dist, x_nad83, y_nad83, elev]])
     input_data_normalized = (input_data - mean) / std
 
+    # Make a prediction using the model
+    prediction = (model.predict(input_data_normalized) > 0.5).astype(int)[0][0]
+
