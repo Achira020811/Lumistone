@@ -71,13 +71,19 @@ class User:
 
 # WaterDetection Class
 class WaterDetection:
-    def __init__(self, zone, depth_scanned, result, remarks=""):
+    def __init__(self, zone, depth_scanned, result, dist, x_nad83, y_nad83, elev, prediction, remarks=""):
         self.zone = zone
         self.depth_scanned = depth_scanned
         self.result = result
         self.remarks = remarks
+        self.dist = dist
+        self.x_nad83 = x_nad83
+        self.y_nad83 = y_nad83
+        self.elev = elev
+        self.prediction = prediction
         self.date = datetime.now().strftime("%Y-%m-%d")
         self.time = datetime.now().strftime("%H:%M:%S")
+
 
     def save_to_db(self):
         cursor.execute('''
