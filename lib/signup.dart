@@ -55,7 +55,7 @@ class SignUpPage extends StatelessWidget {
                   children: [
                     // Logo
                     CircleAvatar(
-                      backgroundImage: AssetImage('images/gem_logo.png'),
+                      backgroundImage: AssetImage('assets/gem_logo.png'),
                       radius: 60,
                       backgroundColor: Colors.transparent,
                     ),
