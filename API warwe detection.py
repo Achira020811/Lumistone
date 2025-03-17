@@ -66,3 +66,7 @@ def predict():
     # Save the prediction to the database
     save_prediction(dist, x_nad83, y_nad83, elev, int(prediction))
 
+    # Return the prediction as a JSON response
+    result = {'prediction': int(prediction)}
+    return jsonify(result)
+
