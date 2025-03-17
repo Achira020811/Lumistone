@@ -1,3 +1,5 @@
+pip install flask tensorflow pandas numpy scikit-learn
+
 from flask import Flask, request, jsonify
 import tensorflow as tf
 import pandas as pd
