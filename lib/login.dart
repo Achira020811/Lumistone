@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:lumistone/MainMenu.dart';
-import 'package:lumistone/signup.dart';
+import 'package:lumistone/extra.dart';
 import 'forgot_password.dart'; // Import the ForgotPasswordPage
+import 'dart:ui'; // Import the dart:ui package for ImageFilter
 
 void main() {
   runApp(LumistoneApp());
@@ -23,8 +23,18 @@ class LumistoneApp extends StatelessWidget {
   }
 }
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  bool _obscurePassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -36,17 +46,26 @@ class LoginPage extends StatelessWidget {
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [
-                  const Color.fromARGB(255, 250, 219, 230),
-                  const Color.fromARGB(255, 243, 182, 216),
-                  const Color.fromARGB(255, 179, 123, 154),
-                  const Color.fromARGB(255, 146, 73, 114),
+                  const Color.fromARGB(255, 255, 255, 255),
+                  const Color.fromARGB(255, 233, 208, 216),
+                  const Color.fromARGB(255, 254, 216, 230),
+                  const Color.fromARGB(255, 241, 175, 203),
+                  const Color.fromARGB(255, 162, 70, 128),
                 ],
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
               ),
               image: DecorationImage(
-                image: AssetImage('assets/gem_bg.png'),
-                //fit: BoxFit.cover,
+                image: AssetImage('assets/gem_bg2.png'),
+                alignment: Alignment(0, 0.9),
+              ),
+            ),
+            child: BackdropFilter(
+              filter: ImageFilter.blur(
+                  sigmaX: 2.0, sigmaY: 1.0), // Adjust the blur intensity
+              child: Container(
+                color:
+                    Colors.black.withOpacity(0), // Adjust the opacity as needed
               ),
             ),
           ),
@@ -55,120 +74,144 @@ class LoginPage extends StatelessWidget {
             child: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    // Logo
-                    CircleAvatar(
-                      backgroundImage: AssetImage('images/gem_logo.png'),
-                      radius: 60,
-                      backgroundColor: Colors.transparent,
-                    ),
-                    SizedBox(height: 220), // Adjust spacing for visual appeal
-                    // Username Field
-                    TextField(
-                      decoration: InputDecoration(
-                        hintText: 'USERNAME...',
-                        filled: true,
-                        fillColor: Colors.white,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50),
-                        ),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      // Logo
+                      CircleAvatar(
+                        backgroundImage: AssetImage('assets/gem_logo.png'),
+                        radius: 60,
+                        backgroundColor: Colors.transparent,
                       ),
-                    ),
-                    SizedBox(height: 5),
-                    // Password Field
-                    TextField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        hintText: 'PASSWORD...',
-                        filled: true,
-                        fillColor: Colors.white,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(50),
-                        ),
+                      SizedBox(height: 120), // Adjust spacing for visual appeal
+                      // Email Field
+                      TextFormField(
+                        controller: _emailController,
+                        decoration: _buildInputDecoration('Email'),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your email';
+                          }
+                          return null;
+                        },
                       ),
-                    ),
-                    SizedBox(height: 5),
-                    // Forgot Password
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ForgotPasswordPage(),
+                      const SizedBox(height: 20),
+
+                      // Password Field
+                      TextFormField(
+                        controller: _passwordController,
+                        decoration: _buildInputDecoration('Password').copyWith(
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _obscurePassword
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                              color: const Color.fromARGB(255, 0, 0, 0),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _obscurePassword = !_obscurePassword;
+                              });
+                            },
                           ),
-                        );
-                      },
-                      child: Text(
-                        'Forgot Password?',
-                        style: TextStyle(
-                          color: const Color.fromARGB(255, 0, 0, 0),
-                          decoration: TextDecoration.underline,
                         ),
+                        obscureText: _obscurePassword,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your password';
+                          }
+                          return null;
+                        },
                       ),
-                    ),
-                    SizedBox(height: 40), // Adjust spacing
-                    // Login Button
-                    SizedBox(
-                      width: 200,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                          padding: EdgeInsets.symmetric(vertical: 1),
-                        ),
-                        onPressed: () {
+                      const SizedBox(height: 30),
+
+                      // Forgot Password
+                      GestureDetector(
+                        onTap: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => MyApp(),
+                              builder: (context) => ForgotPasswordPage(),
                             ),
                           );
                         },
                         child: Text(
-                          'Log in',
+                          'Forgot Password?',
                           style: TextStyle(
                             color: const Color.fromARGB(255, 0, 0, 0),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30,
+                            decoration: TextDecoration.underline,
                           ),
                         ),
                       ),
-                    ),
-                    SizedBox(height: 15), // Adjust spacing for Sign-Up section
-                    // Sign Up Text
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Don't Have An Account Already? ",
-                          style: TextStyle(
-                            color: Colors.white,
+                      SizedBox(height: 100), // Adjust spacing
+
+                      // Login Button
+                      SizedBox(
+                        width: 200,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            padding: EdgeInsets.symmetric(vertical: 1),
                           ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SignUpPage()),
-                            );
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => HomePage(),
+                                ),
+                              );
+                            }
                           },
                           child: Text(
-                            'Sign up',
+                            'Log in',
                             style: TextStyle(
                               color: const Color.fromARGB(255, 0, 0, 0),
-                              decoration: TextDecoration.underline,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 30,
                             ),
                           ),
                         ),
-                      ],
-                    ),
-                  ],
+                      ),
+                      SizedBox(
+                          height: 15), // Adjust spacing for Sign-Up section
+
+                      // Sign Up Text
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Don't Have An Account Already? ",
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SignUpPage()),
+                              );
+                            },
+                            child: Text(
+                              'Sign up',
+                              style: TextStyle(
+                                color: const Color.fromARGB(255, 0, 0, 0),
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -177,6 +220,36 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
+}
+
+InputDecoration _buildInputDecoration(String label) {
+  return InputDecoration(
+    labelText: label,
+    labelStyle:
+        TextStyle(color: const Color.fromARGB(255, 0, 0, 0), fontSize: 16),
+    filled: true,
+    fillColor: Colors.white,
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(50),
+      borderSide: BorderSide(
+          color: const Color.fromARGB(255, 255, 255, 255), width: 1.5),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(50),
+      borderSide: BorderSide(
+          color: const Color.fromARGB(255, 255, 255, 255), width: 1.5),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(50),
+      borderSide: BorderSide(
+          color: const Color.fromARGB(255, 255, 255, 255), width: 2.0),
+    ),
+    errorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(50),
+      borderSide: BorderSide(
+          color: const Color.fromARGB(255, 255, 255, 255), width: 1.5),
+    ),
+  );
 }
 
 class HomePage extends StatelessWidget {
@@ -192,15 +265,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
-// class SignUpPage extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(title: Text('Sign Up')),
-//       body: Center(
-//         child: Text('Sign Up Page'),
-//       ),
-//     );
-//   }
-// }
