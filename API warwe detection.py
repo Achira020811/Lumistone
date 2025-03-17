@@ -34,3 +34,16 @@ def create_table():
     ''')
     conn.commit()
     conn.close()
+
+def save_prediction(dist, x_nad83, y_nad83, elev, prediction):
+    """Save the prediction to the database."""
+    conn = sqlite3.connect(DATABASE)
+    cursor = conn.cursor()
+    cursor.execute('''
+        INSERT INTO predictions (dist, x_nad83, y_nad83, elev, prediction)
+        VALUES (?, ?, ?, ?, ?)
+    ''', (dist, x_nad83, y_nad83, elev, prediction))
+    conn.commit()
+    conn.close()
+
+
