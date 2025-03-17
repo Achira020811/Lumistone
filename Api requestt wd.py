@@ -9,3 +9,7 @@ data = {
     'y_nad83': 4500000.0,
     'elev': 50.0
 }
+
+# Send a POST request
+response = requests.post(url, json=data)
+
