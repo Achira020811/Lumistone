@@ -17,3 +17,20 @@ DATABASE = 'water_detection.db'
 # Load mean and std for normalization (from training)
 mean = np.array([...])  # Replace with your training data mean
 std = np.array([...])   # Replace with your training data std
+
+def create_table():
+    """Create a table to store predictions if it doesn't exist."""
+    conn = sqlite3.connect(DATABASE)
+    cursor = conn.cursor()
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS predictions (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            dist REAL NOT NULL,
+            x_nad83 REAL NOT NULL,
+            y_nad83 REAL NOT NULL,
+            elev REAL NOT NULL,
+            prediction INTEGER NOT NULL
+        )
+    ''')
+    conn.commit()
+    conn.close()
