@@ -131,4 +131,15 @@ if __name__ == "__main__":
     )
     scan1.save_to_db()
 
+    # Fetch all users
+    print("All Users:")
+    print(User.get_all_users())
+
+    # Fetch all scan results
+    print("All Scan Results:")
+    print(WaterDetection.get_all_scans())
+
+# Close the database connection
+conn.close()
+
 
