@@ -53,7 +53,7 @@ class _ResultInfoScreenState extends State<ResultInfoScreen> {
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image.asset(
-                'lib/assets/pic1.jpg',
+                'lib/assets/Gold_Database.png',
                 height: 150,
                 width: double.infinity,
                 fit: BoxFit.cover,
