@@ -81,3 +81,23 @@ def predict():
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+
+# API endpoint to retrieve all results
+@app.route('/results', methods=['GET'])
+def get_results():
+    try:
+        results = GoldDetectionResult.query.all()
+        return jsonify([{
+            'id': result.id,
+            'x': result.x_coordinate,
+            'y': result.y_coordinate,
+            'depth': result.depth,
+            'gold_present': result.gold_present
+        } for result in results]), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+# Run the Flask app
+if __name__ == '__main__':
+    app.run(debug=True)
