@@ -19,3 +19,10 @@ class GoldDetectionResult(db.Model):
     y_coordinate = db.Column(db.Float, nullable=False)
     depth = db.Column(db.Float, nullable=False)
     gold_present = db.Column(db.Boolean, nullable=False)
+
+     def __repr__(self):
+        return f"GoldDetectionResult(X={self.x_coordinate}, Y={self.y_coordinate}, Depth={self.depth}, GoldPresent={self.gold_present})"
+
+# Create the database tables
+with app.app_context():
+    db.create_all()
