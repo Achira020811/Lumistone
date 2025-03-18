@@ -26,3 +26,8 @@ class GoldDetectionResult(db.Model):
 # Create the database tables
 with app.app_context():
     db.create_all()
+
+# Load the pre-trained model and scaler
+model = tf.keras.models.load_model('gold_detection_model.h5')  # Replace with your model path
+scaler = MinMaxScaler()
+scaler.fit(pd.read_csv('training_data.csv')[['Cr_V_ratio', 'Garnet_Ilmenite_ratio', 'Processed_magnetics', 'Gravity_disturbance_Processed', 'Log10Res']])
