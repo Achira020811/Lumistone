@@ -10,18 +10,17 @@ class _ResultInfoScreenState extends State<ResultInfoScreen> {
   String? _selectedDepth;
   TextEditingController _remarkController = TextEditingController();
 
-class UserInfoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 230, 84, 166),
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
@@ -39,35 +38,55 @@ class UserInfoScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(height: 4),
-              Text(
-                'User Information Table,',
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Text(
+                'Result Information Table',
                 style: TextStyle(
                   fontSize: 14,
                   color: Colors.white70,
                 ),
               ),
-              SizedBox(height: 20),
-              Center(
-                child: CircleAvatar(
-                  radius: 40,
-                  backgroundColor: Colors.black,
-                  child: Icon(
-                    Icons.person,
-                    color: Colors.white,
-                    size: 50,
-                  ),
+            ),
+            SizedBox(height: 10),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.asset(
+                'lib/assets/pic1.jpg',
+                height: 150,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
+            ),
+            SizedBox(height: 10),
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.all(16.0),
+                child: ListView(
+                  children: [
+                    _buildInfoField('Scan ID'),
+                    _buildInfoField('Data'),
+                    _buildInfoField('Time'),
+                    _buildRadioField(
+                        'Zone', ['A', 'B', 'C', 'D'], _selectedZone, (value) {
+                      setState(() {
+                        _selectedZone = value;
+                      });
+                    }),
+                    _buildRadioField('Depth Scanned', ['100m', '200m', '300m'],
+                        _selectedDepth, (value) {
+                      setState(() {
+                        _selectedDepth = value;
+                      });
+                    }),
+                    _buildInfoField('Result'),
+                    _buildRemarkField(),
+                  ],
                 ),
               ),
-              SizedBox(height: 20),
-              _buildInfoField('User ID'),
-              _buildInfoField('Full Name'),
-              _buildInfoField('Email'),
-              _buildInfoField('Phone Number'),
-              _buildInfoField('Role'),
-              _buildInfoField('Date of Registration'),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
