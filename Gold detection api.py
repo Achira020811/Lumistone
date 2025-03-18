@@ -31,3 +31,26 @@ with app.app_context():
 model = tf.keras.models.load_model('gold_detection_model.h5')  # Replace with your model path
 scaler = MinMaxScaler()
 scaler.fit(pd.read_csv('training_data.csv')[['Cr_V_ratio', 'Garnet_Ilmenite_ratio', 'Processed_magnetics', 'Gravity_disturbance_Processed', 'Log10Res']])
+
+# API endpoint to predict gold presence
+@app.route('/predict', methods=['POST'])
+def predict():
+    try:
+        # Get input data from the request
+        data = request.json
+        x = float(data['x'])
+        y = float(data['y'])
+        depth = float(data['depth'])
+
+        # Create a DataFrame with the input data
+        input_data = pd.DataFrame({
+            'X': [x],
+            'Y': [y],
+            'Baro_alt': [depth],
+            'Cr_V_ratio': [0.0],  # Replace with actual values if available
+            'Garnet_Ilmenite_ratio': [0.0],  # Replace with actual values if available
+            'Processed_magnetics': [0.0],  # Replace with actual values if available
+            'Gravity_disturbance_Processed': [0.0],  # Replace with actual values if available
+            'Log10Res': [0.0]  # Replace with actual values if available
+        })
+
