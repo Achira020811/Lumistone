@@ -56,3 +56,28 @@ def predict():
 
                # Normalize the input data
         input_normalized = scaler.transform(input_data[['Cr_V_ratio', 'Garnet_Ilmenite_ratio', 'Processed_magnetics', 'Gravity_disturbance_Processed', 'Log10Res']])
+
+        # Predict gold presence
+        prediction = (model.predict(input_normalized) > 0.5).astype(int)
+        gold_present = bool(prediction[0][0])
+
+        # Save the result to the database
+        result = GoldDetectionResult(
+            x_coordinate=x,
+            y_coordinate=y,
+            depth=depth,
+            gold_present=gold_present
+        )
+        db.session.add(result)
+        db.session.commit()
+
+        # Return the prediction result
+        return jsonify({
+            'x': x,
+            'y': y,
+            'depth': depth,
+            'gold_present': gold_present
+        }), 200
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
