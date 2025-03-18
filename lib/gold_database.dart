@@ -97,7 +97,7 @@ class _ResultInfoScreenState extends State<ResultInfoScreen> {
       padding: const EdgeInsets.symmetric(vertical: 6.0),
       child: Container(
         decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 255, 247, 250),
+          color: Colors.white,
           borderRadius: BorderRadius.circular(20),
         ),
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
@@ -118,4 +118,47 @@ class _ResultInfoScreenState extends State<ResultInfoScreen> {
       ),
     );
   }
-}
+
+  Widget _buildRadioField(
+      String label, List<String> options, String? selectedValue, Function(String?) onChanged) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 6.0),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: options.map((option) {
+                return Row(
+                  children: [
+                    Radio<String>(
+                      value: option,
+                      groupValue: selectedValue,
+                      onChanged: onChanged,
+                      activeColor: Colors.purple,
+                    ),
+                    Text(option, style: TextStyle(color: Colors.black)),
+                  ],
+                );
+              }).toList(),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
