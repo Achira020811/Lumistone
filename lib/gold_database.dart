@@ -119,8 +119,8 @@ class _ResultInfoScreenState extends State<ResultInfoScreen> {
     );
   }
 
-  Widget _buildRadioField(
-      String label, List<String> options, String? selectedValue, Function(String?) onChanged) {
+  Widget _buildRadioField(String label, List<String> options,
+      String? selectedValue, Function(String?) onChanged) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6.0),
       child: Container(
@@ -162,3 +162,37 @@ class _ResultInfoScreenState extends State<ResultInfoScreen> {
     );
   }
 
+  Widget _buildRemarkField() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 6.0),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Remark',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+            ),
+            TextField(
+              controller: _remarkController,
+              decoration: InputDecoration(
+                hintText: 'Enter your remark here...',
+                border: InputBorder.none,
+              ),
+              style: TextStyle(color: Colors.black),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
