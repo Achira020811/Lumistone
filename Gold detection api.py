@@ -54,3 +54,5 @@ def predict():
             'Log10Res': [0.0]  # Replace with actual values if available
         })
 
+               # Normalize the input data
+        input_normalized = scaler.transform(input_data[['Cr_V_ratio', 'Garnet_Ilmenite_ratio', 'Processed_magnetics', 'Gravity_disturbance_Processed', 'Log10Res']])
