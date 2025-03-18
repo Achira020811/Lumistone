@@ -1,19 +1,14 @@
-import 'package:demo/DataBase/database.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
+class ResultInfoScreen extends StatefulWidget {
+  @override
+  _ResultInfoScreenState createState() => _ResultInfoScreenState();
 }
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: ResultInfoScreen(),
-    );
-  }
-}
+class _ResultInfoScreenState extends State<ResultInfoScreen> {
+  String? _selectedZone;
+  String? _selectedDepth;
+  TextEditingController _remarkController = TextEditingController();
 
 class UserInfoScreen extends StatelessWidget {
   @override
