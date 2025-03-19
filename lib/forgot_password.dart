@@ -1,17 +1,5 @@
 import 'package:flutter/material.dart';
 
-// class ForgotPasswordPage extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(title: Text('Forgot Password')),
-//       body: Center(
-//         child: Text('Forgot Password Page'),
-//       ),
-//     );
-//   }
-// }
-
 void main() {
   runApp(LumistoneApp());
 }
@@ -32,15 +20,28 @@ class LumistoneApp extends StatelessWidget {
   }
 }
 
-class ForgotPasswordPage extends StatelessWidget {
+class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});
+
+  @override
+  _ForgotPasswordPageState createState() => _ForgotPasswordPageState();
+}
+
+class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _newPasswordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  bool _obscureNewPassword = true;
+  bool _obscureConfirmPassword = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-          // Background gradient and image
+          // Background gradient
           Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -61,66 +62,137 @@ class ForgotPasswordPage extends StatelessWidget {
               child: Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    // Logo
-                    CircleAvatar(
-                      backgroundImage: AssetImage('images/gem_logo.png'),
-                      radius: 60,
-                      backgroundColor: Colors.transparent,
-                    ),
-                    SizedBox(height: 50),
-                    Text(
-                      'FORGOT PASSWORD',
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
-                        color: const Color.fromARGB(255, 0, 0, 0),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      // Logo
+                      CircleAvatar(
+                        backgroundImage: AssetImage('assets/gem_logo2.png'),
+                        radius: 80,
+                        backgroundColor: Colors.transparent,
                       ),
-                    ),
-                    SizedBox(height: 20),
-                    // Username Field
-                    _buildTextField('PHONE NUMBER...'),
-                    SizedBox(height: 5),
-                    // Mobile Field
-                    _buildTextField('NEW PASSWORD...', obscureText: true),
-                    SizedBox(height: 5),
-                    // Email Field
-                    _buildTextField('CONFIRM PASSWORD...', obscureText: true),
-                    SizedBox(height: 5),
+                      SizedBox(height: 50),
+                      Text(
+                        'FORGOT PASSWORD',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                          color: const Color.fromARGB(255, 0, 0, 0),
+                        ),
+                      ),
+                      SizedBox(height: 20),
 
-                    SizedBox(height: 170),
-                    // Change password Button
-                    SizedBox(
-                      width: 300, // Reduced button width
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.white,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
-                          ),
-                          padding: EdgeInsets.symmetric(vertical: 2),
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ForgotPasswordPage()),
-                          );
+                      // Phone Number Field
+                      TextFormField(
+                        controller: _phoneController,
+                        decoration: _buildInputDecoration('PHONE NUMBER...'),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your phone number';
+                          }
+                          return null;
                         },
-                        child: Text(
-                          'Change Password',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
+                      ),
+                      SizedBox(height: 5),
+
+                      // New Password Field
+                      TextFormField(
+                        controller: _newPasswordController,
+                        decoration:
+                            _buildInputDecoration('NEW PASSWORD...').copyWith(
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _obscureNewPassword
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                              color: const Color.fromARGB(255, 0, 0, 0),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _obscureNewPassword = !_obscureNewPassword;
+                              });
+                            },
+                          ),
+                        ),
+                        obscureText: _obscureNewPassword,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter your new password';
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(height: 5),
+
+                      // Confirm Password Field
+                      TextFormField(
+                        controller: _confirmPasswordController,
+                        decoration: _buildInputDecoration('CONFIRM PASSWORD...')
+                            .copyWith(
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _obscureConfirmPassword
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                              color: const Color.fromARGB(255, 0, 0, 0),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _obscureConfirmPassword =
+                                    !_obscureConfirmPassword;
+                              });
+                            },
+                          ),
+                        ),
+                        obscureText: _obscureConfirmPassword,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please confirm your password';
+                          }
+                          if (value != _newPasswordController.text) {
+                            return 'Passwords do not match';
+                          }
+                          return null;
+                        },
+                      ),
+                      SizedBox(height: 170),
+
+                      // Change Password Button
+                      SizedBox(
+                        width: 300,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            padding: EdgeInsets.symmetric(vertical: 2),
+                          ),
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              // Implement password change logic
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                    content:
+                                        Text('Password changed successfully')),
+                              );
+                            }
+                          },
+                          child: Text(
+                            'Change Password',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -130,34 +202,15 @@ class ForgotPasswordPage extends StatelessWidget {
     );
   }
 
-  Widget _buildTextField(String hintText, {bool obscureText = false}) {
-    return TextField(
-      obscureText: obscureText,
-      decoration: InputDecoration(
-        hintText: hintText,
-        filled: true,
-        fillColor: Colors.white,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(50),
-        ),
+  InputDecoration _buildInputDecoration(String hintText) {
+    return InputDecoration(
+      hintText: hintText,
+      filled: true,
+      fillColor: Colors.white,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(50),
       ),
+      errorStyle: TextStyle(color: Colors.red),
     );
   }
 }
-
-// class HomePage extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Home Page'),
-//       ),
-//       body: Center(
-//         child: Text(
-//           'Welcome to Lumistone!',
-//           style: TextStyle(fontSize: 20),
-//         ),
-//       ),
-//     );
-//   }
-// }

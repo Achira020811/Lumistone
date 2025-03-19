@@ -53,8 +53,8 @@ class MainLogPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const CircleAvatar(
-                      backgroundImage: AssetImage('assets/gem_logo.png'),
-                      radius: 60,
+                      backgroundImage: AssetImage('assets/gem_logo2.png'),
+                      radius: 100,
                       backgroundColor: Colors.transparent,
                     ),
                     const SizedBox(height: 50),
@@ -66,7 +66,7 @@ class MainLogPage extends StatelessWidget {
                         color: Colors.black,
                       ),
                     ),
-                    const SizedBox(height: 120),
+                    const SizedBox(height: 100),
                     _buildButton(
                       text: 'Log in',
                       onPressed: () => Navigator.push(
@@ -174,7 +174,7 @@ class MainLogPage extends StatelessWidget {
 //                     suffixIcon: IconButton(
 //                       icon: Icon(
 //                         _obscurePassword
-                            // ? Icons.visibility_off
+// ? Icons.visibility_off
 //                             : Icons.visibility,
 //                       ),
 //                       onPressed: () {
