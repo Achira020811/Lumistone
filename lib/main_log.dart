@@ -54,7 +54,7 @@ class MainLogPage extends StatelessWidget {
                   children: [
                     const CircleAvatar(
                       backgroundImage: AssetImage('assets/gem_logo2.png'),
-                      radius: 60,
+                      radius: 100,
                       backgroundColor: Colors.transparent,
                     ),
                     const SizedBox(height: 50),
@@ -66,7 +66,7 @@ class MainLogPage extends StatelessWidget {
                         color: Colors.black,
                       ),
                     ),
-                    const SizedBox(height: 120),
+                    const SizedBox(height: 100),
                     _buildButton(
                       text: 'Log in',
                       onPressed: () => Navigator.push(
