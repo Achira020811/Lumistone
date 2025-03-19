@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lumistone/MainMenu.dart';
 
 void main() {
   runApp(LumistoneApp());
@@ -55,8 +56,8 @@ class SignUpPage extends StatelessWidget {
                   children: [
                     // Logo
                     CircleAvatar(
-                      backgroundImage: AssetImage('images/gem_logo.png'),
-                      radius: 60,
+                      backgroundImage: AssetImage('assets/gem_logo2.png'),
+                      radius: 80,
                       backgroundColor: Colors.transparent,
                     ),
                     SizedBox(height: 50),
@@ -132,25 +133,6 @@ class SignUpPage extends StatelessWidget {
         fillColor: Colors.white,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(50),
-        ),
-      ),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Home Page'),
-      ),
-      body: Center(
-        child: Text(
-          'Welcome to Lumistone!',
-          style: TextStyle(fontSize: 20),
         ),
       ),
     );
