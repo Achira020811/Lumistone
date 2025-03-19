@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lumistone/Profile.dart';
-import 'package:lumistone/WaterDetection.dart';
+// import 'package:lumistone/WaterDetection.dart';
 import 'package:lumistone/GemDetection.dart';
 import 'package:lumistone/WaterLevel.dart';
+import 'package:lumistone/location%20page.dart';
 
 
 void main() {
@@ -195,7 +196,7 @@ class WaterDetectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Instead of showing a basic screen, we'll return the DepthSelectionPage
-    return  WaterDepthSelectionPage();
+    return  LocationPage();
   }
 }
 
