@@ -69,8 +69,8 @@ class GradientBackgroundScreen extends StatelessWidget {
               children: [
                 Center(
                   child: Image.asset(
-                    "assets/New Logo.jpg",
-                    height: 250,
+                    "assets/gem_logo2.png",
+                    height: 350,
                   ),
                 ),
                 SizedBox(height: 10),
