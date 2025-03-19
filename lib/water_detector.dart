@@ -1,35 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:lumistone/MainMenu.dart';
 
 void main() {
-  runApp(const GoldDetectionApp());
+  runApp(const WaterDetectionApp());
 }
 
-class GoldDetectionApp extends StatelessWidget {
-  const GoldDetectionApp({super.key});
+
+class WaterDetectionApp extends StatelessWidget {
+  const WaterDetectionApp({super.key});
+
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: GoldDetectionScreen(),
+      home: WaterDetectionScreen(),
     );
   }
 }
 
-class GoldDetectionScreen extends StatefulWidget {
-  const GoldDetectionScreen({super.key});
+
+class WaterDetectionScreen extends StatefulWidget {
+  const WaterDetectionScreen({super.key});
+
 
   @override
-  _GoldDetectionScreenState createState() => _GoldDetectionScreenState();
+  _WaterDetectionScreenState createState() => _WaterDetectionScreenState();
 }
 
-class _GoldDetectionScreenState extends State<GoldDetectionScreen> {
-  String goldDepth = "";
+class _WaterDetectionScreenState extends State<WaterDetectionScreen> {
+  String waterDepth = ""; // Variable to hold backend value
 
-  void setGoldDepth(String depth) {
+  // Function to set water depth value manually (To be updated from backend)
+  void setWaterDepth(String depth) {
     setState(() {
-      goldDepth = depth;
+      waterDepth = depth;
     });
   }
 
@@ -61,7 +67,7 @@ class _GoldDetectionScreenState extends State<GoldDetectionScreen> {
               // Animated Checkmark Icon
               BounceInDown(
                 child: Image.asset(
-                  'assets/checkmark.png',
+                  'assets/checkmark.png', 
                   width: 200,
                 ),
               ),
@@ -91,7 +97,7 @@ class _GoldDetectionScreenState extends State<GoldDetectionScreen> {
                 ),
                 child: Center(
                   child: Text(
-                    goldDepth,
+                    waterDepth,
                     style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -104,7 +110,7 @@ class _GoldDetectionScreenState extends State<GoldDetectionScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  _buildButton(context, "Exit",
+                  _buildExitButton(context, "Exit",
                       const Color.fromARGB(255, 245, 234, 238)),
                   const SizedBox(width: 50),
                   _buildButton(context, "Continue",
@@ -128,6 +134,28 @@ class _GoldDetectionScreenState extends State<GoldDetectionScreen> {
             label: '',
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildExitButton(BuildContext context, String text, Color color) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: color,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50),
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+      ),
+      onPressed: () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage()), // Navigates to Home Page
+        );
+      },
+      child: Text(
+        text,
+        style: const TextStyle(color: Colors.black, fontSize: 16),
       ),
     );
   }
