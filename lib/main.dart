@@ -59,7 +59,7 @@ class GradientBackgroundScreen extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/Background image.jpg"), // Replace with your image path
+              image: AssetImage("assets/Background image.jpg"), 
               fit: BoxFit.cover,
             ),
           ),
