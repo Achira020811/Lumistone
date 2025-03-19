@@ -58,14 +58,9 @@ class GradientBackgroundScreen extends StatelessWidget {
       body: SafeArea(
         child: Container(
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Colors.pink.shade100,
-                Color.fromARGB(
-                    255, 111, 25, 74) // Bottom color (purplish gradient)
-              ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
+            image: DecorationImage(
+              image: AssetImage("assets/Background image.jpg"), // Replace with your image path
+              fit: BoxFit.cover,
             ),
           ),
           child: Center(
@@ -76,33 +71,13 @@ class GradientBackgroundScreen extends StatelessWidget {
                   "assets/Logo Crop.png",
                   height: 150,
                 ),
-        
-                // Add your content like the logo and text here
-                // CircleAvatar(
-                //   backgroundColor: Colors.black,
-                //   radius: 60,
-                //   child: Icon(
-                //     Icons.diamond,
-                //     color: Colors.pinkAccent,
-                //     size: 60,
-                //   ),
-                // ),
-                // SizedBox(height: 20),
-                // Text(
-                //   'LUMISTONE',
-                //   style: TextStyle(
-                //     fontSize: 24,
-                //     fontWeight: FontWeight.bold,
-                //     color: Colors.white,
-                //   ),
-                // ),
                 SizedBox(height: 10),
                 Text(
                   'AI Powered ',
                   textAlign: TextAlign.start,
                   style: TextStyle(
                     fontSize: 24,
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                 ),
                 Text(
@@ -110,7 +85,7 @@ class GradientBackgroundScreen extends StatelessWidget {
                   textAlign: TextAlign.start,
                   style: TextStyle(
                     fontSize: 24,
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                 ),
               ],
