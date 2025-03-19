@@ -101,11 +101,11 @@ class _DepthSelectionPageState extends State<WaterDepthSelectionPage> {
                   SizedBox(height: screenWidth * 0.1),
           
                   // Depth Selection Buttons
-                  _buildDepthButton(context, "1m"),
+                  _buildDepthButton(context, "100m"),
                   SizedBox(height: screenWidth * 0.07),
-                  _buildDepthButton(context, "2m"),
+                  _buildDepthButton(context, "200m"),
                   SizedBox(height: screenWidth * 0.07),
-                  _buildDepthButton(context, "3m"),
+                  _buildDepthButton(context, "300m"),
           
                   Spacer(),
           

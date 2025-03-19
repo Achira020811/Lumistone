@@ -5,7 +5,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
 }
 
 class RecordsScreen extends StatelessWidget {
-  const RecordsScreen({Key? key}) : super(key: key);
+  const RecordsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -122,10 +122,10 @@ class InformationCard extends StatelessWidget {
   final VoidCallback onTap;
 
   const InformationCard({
-    Key? key,
+    super.key,
     required this.title,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

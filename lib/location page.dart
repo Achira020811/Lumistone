@@ -17,6 +17,8 @@ class LumiStoneApp extends StatelessWidget {
 }
 
 class LocationPage extends StatelessWidget {
+  const LocationPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

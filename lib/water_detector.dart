@@ -6,8 +6,10 @@ void main() {
   runApp(const WaterDetectionApp());
 }
 
+
 class WaterDetectionApp extends StatelessWidget {
   const WaterDetectionApp({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +20,10 @@ class WaterDetectionApp extends StatelessWidget {
   }
 }
 
+
 class WaterDetectionScreen extends StatefulWidget {
   const WaterDetectionScreen({super.key});
+
 
   @override
   _WaterDetectionScreenState createState() => _WaterDetectionScreenState();

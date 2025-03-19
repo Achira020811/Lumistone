@@ -7,7 +7,7 @@ void main() {
 }
 
 class GoldDetectionApp extends StatelessWidget {
-  const GoldDetectionApp({Key? key}) : super(key: key);
+  const GoldDetectionApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +19,8 @@ class GoldDetectionApp extends StatelessWidget {
 }
 
 class GoldDetectionScreen extends StatefulWidget {
+  const GoldDetectionScreen({super.key});
+
   @override
   _GoldDetectionScreenState createState() => _GoldDetectionScreenState();
 }
