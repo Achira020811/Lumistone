@@ -88,7 +88,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       // Phone Number Field
                       TextFormField(
                         controller: _phoneController,
-                        decoration: _buildInputDecoration('PHONE NUMBER...'),
+                        decoration: _buildInputDecoration('Phone Number'),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Please enter your phone number';
@@ -102,13 +102,13 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       TextFormField(
                         controller: _newPasswordController,
                         decoration:
-                            _buildInputDecoration('NEW PASSWORD...').copyWith(
+                            _buildInputDecoration('New Password').copyWith(
                           suffixIcon: IconButton(
                             icon: Icon(
                               _obscureNewPassword
                                   ? Icons.visibility_off
                                   : Icons.visibility,
-                              color: const Color.fromARGB(255, 0, 0, 0),
+                              color: Colors.black,
                             ),
                             onPressed: () {
                               setState(() {
@@ -130,14 +130,14 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                       // Confirm Password Field
                       TextFormField(
                         controller: _confirmPasswordController,
-                        decoration: _buildInputDecoration('CONFIRM PASSWORD...')
-                            .copyWith(
+                        decoration:
+                            _buildInputDecoration('Confirm Password').copyWith(
                           suffixIcon: IconButton(
                             icon: Icon(
                               _obscureConfirmPassword
                                   ? Icons.visibility_off
                                   : Icons.visibility,
-                              color: const Color.fromARGB(255, 0, 0, 0),
+                              color: Colors.black,
                             ),
                             onPressed: () {
                               setState(() {
@@ -173,7 +173,6 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                           ),
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              // Implement password change logic
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                     content:
@@ -202,15 +201,33 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     );
   }
 
-  InputDecoration _buildInputDecoration(String hintText) {
+  /// **Defines a custom input decoration for text fields**
+  InputDecoration _buildInputDecoration(String label) {
     return InputDecoration(
-      hintText: hintText,
+      labelText: label,
+      labelStyle: TextStyle(color: Colors.black, fontSize: 16),
       filled: true,
       fillColor: Colors.white,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(50),
+        borderSide: BorderSide(
+            color: const Color.fromARGB(255, 255, 255, 255), width: 1.5),
       ),
-      errorStyle: TextStyle(color: Colors.red),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(50),
+        borderSide: BorderSide(
+            color: const Color.fromARGB(255, 255, 255, 255), width: 1.5),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(50),
+        borderSide: BorderSide(
+            color: const Color.fromARGB(255, 255, 255, 255), width: 2.0),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(50),
+        borderSide: BorderSide(
+            color: const Color.fromARGB(255, 255, 255, 255), width: 1.5),
+      ),
     );
   }
 }
