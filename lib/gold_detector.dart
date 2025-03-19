@@ -51,20 +51,20 @@ class _GoldDetectionScreenState extends State<GoldDetectionScreen> {
                 "Scan finished\nGold detected",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 22,
+                  fontSize: 28,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 30),
               // Animated Checkmark Icon
               BounceInDown(
                 child: Image.asset(
                   'assets/checkmark.png', // Add your green checkmark image in assets
-                  width: 100,
+                  width: 200,
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               const Text(
                 "Gold Found Depth",
                 style: TextStyle(
@@ -75,8 +75,8 @@ class _GoldDetectionScreenState extends State<GoldDetectionScreen> {
               ),
               const SizedBox(height: 10),
               Container(
-                width: 120,
-                height: 40,
+                width: 150,
+                height: 50,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
@@ -99,13 +99,15 @@ class _GoldDetectionScreenState extends State<GoldDetectionScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 70),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  _buildButton(context, "Exit", Colors.pink.shade100),
-                  const SizedBox(width: 20),
-                  _buildButton(context, "Continue", Colors.pink.shade100),
+                  _buildButton(context, "Exit",
+                      const Color.fromARGB(255, 245, 234, 238)),
+                  const SizedBox(width: 50),
+                  _buildButton(context, "Continue",
+                      const Color.fromARGB(255, 245, 234, 238)),
                 ],
               ),
             ],
@@ -134,9 +136,9 @@ class _GoldDetectionScreenState extends State<GoldDetectionScreen> {
       style: ElevatedButton.styleFrom(
         backgroundColor: color,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(50),
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
       ),
       onPressed: () {
         showDialog(
@@ -145,7 +147,7 @@ class _GoldDetectionScreenState extends State<GoldDetectionScreen> {
             return BounceInUp(
               child: AlertDialog(
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(50),
                 ),
                 title: Text("$text Button Pressed"),
                 content: const Text("You have clicked on a button."),
