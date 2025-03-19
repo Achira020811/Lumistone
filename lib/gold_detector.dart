@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:lumistone/MainMenu.dart';
 
 void main() {
   runApp(const GoldDetectionApp());
@@ -60,7 +61,7 @@ class _GoldDetectionScreenState extends State<GoldDetectionScreen> {
               // Animated Checkmark Icon
               BounceInDown(
                 child: Image.asset(
-                  'assets/checkmark.png', // Add your green checkmark image in assets
+                  'assets/checkmark.png', 
                   width: 200,
                 ),
               ),
@@ -103,7 +104,7 @@ class _GoldDetectionScreenState extends State<GoldDetectionScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  _buildButton(context, "Exit",
+                  _buildExitButton(context, "Exit",
                       const Color.fromARGB(255, 245, 234, 238)),
                   const SizedBox(width: 50),
                   _buildButton(context, "Continue",
@@ -127,6 +128,29 @@ class _GoldDetectionScreenState extends State<GoldDetectionScreen> {
             label: '',
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildExitButton(BuildContext context, String text, Color color) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: color,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50),
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
+      ),
+      onPressed: () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) => HomePage()), // Navigates to Home
+        );
+      },
+      child: Text(
+        text,
+        style: const TextStyle(color: Colors.black, fontSize: 16),
       ),
     );
   }
