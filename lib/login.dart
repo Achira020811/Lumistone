@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lumistone/extra.dart';
+import 'package:lumistone/MainMenu.dart';
+import 'package:lumistone/signup.dart';
 import 'forgot_password.dart'; // Import the ForgotPasswordPage
 import 'dart:ui'; // Import the dart:ui package for ImageFilter
 
@@ -56,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
                 end: Alignment.bottomCenter,
               ),
               image: DecorationImage(
-                image: AssetImage('assets/gem_bg2.png'),
+                image: AssetImage('images/gem_bg2.png'),
                 alignment: Alignment(0, 0.9),
               ),
             ),
@@ -82,11 +83,11 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       // Logo
                       CircleAvatar(
-                        backgroundImage: AssetImage('assets/gem_logo.png'),
-                        radius: 60,
+                        backgroundImage: AssetImage('assets/gem_logo2.png'),
+                        radius: 80,
                         backgroundColor: Colors.transparent,
                       ),
-                      SizedBox(height: 120), // Adjust spacing for visual appeal
+                      SizedBox(height: 100), // Adjust spacing for visual appeal
                       // Email Field
                       TextFormField(
                         controller: _emailController,
@@ -164,7 +165,7 @@ class _LoginPageState extends State<LoginPage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => HomePage(),
+                                  builder: (context) => MyApp(),
                                 ),
                               );
                             }
@@ -252,16 +253,16 @@ InputDecoration _buildInputDecoration(String label) {
   );
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+// class HomePage extends StatelessWidget {
+//   const HomePage({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Home')),
-      body: Center(
-        child: Text('Welcome to Home Page!'),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(title: Text('Home')),
+//       body: Center(
+//         child: Text('Welcome to Home Page!'),
+//       ),
+//     );
+//   }
+// }
