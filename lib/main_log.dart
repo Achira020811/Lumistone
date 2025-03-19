@@ -53,7 +53,7 @@ class MainLogPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const CircleAvatar(
-                      backgroundImage: AssetImage('assets/gem_logo.png'),
+                      backgroundImage: AssetImage('assets/gem_logo2.png'),
                       radius: 60,
                       backgroundColor: Colors.transparent,
                     ),
@@ -174,7 +174,7 @@ class MainLogPage extends StatelessWidget {
 //                     suffixIcon: IconButton(
 //                       icon: Icon(
 //                         _obscurePassword
-                            // ? Icons.visibility_off
+// ? Icons.visibility_off
 //                             : Icons.visibility,
 //                       ),
 //                       onPressed: () {
