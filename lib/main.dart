@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:lumistone/FrontPage2.dart';
+// import 'package:lumistone/FrontPage2.dart';
 import 'package:lumistone/main_log.dart';
 
 void main() {
@@ -15,8 +15,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: AnimatedSplashScreen(
-        splash: SplashScreen(),
-        nextScreen: Screen1(),
+        splash: GradientBackgroundScreen(),
+        nextScreen:MyApp1(),
         splashIconSize: double.infinity,
         duration: 3000,
         splashTransition: SplashTransition.fadeTransition,
@@ -68,7 +68,7 @@ class GradientBackgroundScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  "assets/Logo Crop.png",
+                  "assets/New Logo.jpg",
                   height: 150,
                 ),
                 SizedBox(height: 10),
