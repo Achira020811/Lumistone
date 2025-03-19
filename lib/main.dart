@@ -67,27 +67,29 @@ class GradientBackgroundScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset(
-                  "assets/New Logo.jpg",
-                  height: 150,
+                Center(
+                  child: Image.asset(
+                    "assets/New Logo.jpg",
+                    height: 250,
+                  ),
                 ),
                 SizedBox(height: 10),
-                Text(
-                  'AI Powered ',
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.black,
-                  ),
-                ),
-                Text(
-                  ' Gem Detector System',
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.black,
-                  ),
-                ),
+                // Text(
+                //   'AI Powered ',
+                //   textAlign: TextAlign.start,
+                //   style: TextStyle(
+                //     fontSize: 24,
+                //     color: Colors.black,
+                //   ),
+                // ),
+                // Text(
+                //   ' Gem Detector System',
+                //   textAlign: TextAlign.start,
+                //   style: TextStyle(
+                //     fontSize: 24,
+                //     color: Colors.black,
+                //   ),
+                // ),
               ],
             ),
           ),
