@@ -66,35 +66,47 @@ class HomePage extends StatelessWidget {
                     crossAxisSpacing: 20,
                     mainAxisSpacing: 20,
                     children: [
-                      _buildMenuItem(
-                        context,
-                        "Water Detection",
-                        Icons.water_drop,
-                        Colors.blue,
-                        WaterDetectionScreen(),
-                      ),
-                      _buildMenuItem(
-                        context,
-                        "Records",
-                        Icons.storage,
-                        Colors.orange,
-                        RecordsScreen(),
-                      ),
-                      _buildMenuItem(
-                        context,
-                        "Gem Detection",
-                        Icons.diamond,
-                        Colors.black,
-                        GemDetectionScreen(),
-                      ),
-                      _buildMenuItem(
-                        context,
-                        "Notification",
-                        Icons.chat_bubble,
-                        Colors.green,
-                        NotificationScreen(),
-                      ),
-                    ],
+  _buildMenuItem(
+    context,
+    "Water Detection",
+    "assets/Water Drop.png",
+    85.0,  // width
+    85.0,  // height
+    WaterDetectionScreen(),
+  ),
+  _buildMenuItem(
+    context,
+    "Records",
+    "assets/database.png",
+    70.0,  // width
+    70.0,  // height
+    RecordsScreen(),
+  ),
+  _buildMenuItem(
+    context,
+    "Gem Detection",
+    "assets/gem.png",
+    70.0,  // width
+    70.0,  // height
+    GemDetectionScreen(),
+  ),
+  _buildMenuItem(
+    context,
+    "Notification",
+    "assets/notification-bell.png",
+    65.0,  // width
+    65.0,  // height
+    NotificationScreen(),
+  ),
+  _buildMenuItem(
+    context,
+    "Gold Detection",
+    "assets/Gold Detection.png",
+    75.0,  // width
+    75.0,  // height
+    NotificationScreen(),
+  ),
+],
                   ),
                 ),
                 _buildBottomProfileIcon(),
@@ -125,11 +137,12 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildMenuItem(
+Widget _buildMenuItem(
     BuildContext context,
     String title,
-    IconData icon,
-    Color color,
+    String imagePath,
+    double imageWidth,
+    double imageHeight,
     Widget destinationScreen,
   ) {
     return GestureDetector(
@@ -147,7 +160,11 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, size: 40, color: color),
+            Image.asset(
+              imagePath,
+              width: imageWidth,
+              height: imageHeight,
+            ),
             SizedBox(height: 10),
             Text(title, style: TextStyle(fontWeight: FontWeight.bold)),
           ],
