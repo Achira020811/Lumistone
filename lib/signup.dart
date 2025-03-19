@@ -88,8 +88,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                       SizedBox(height: 20),
                       // Username Field
-                      _buildTextField('USERNAME...', _usernameController,
-                          (value) {
+                      _buildTextField('Username', _usernameController, (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your username';
                         }
@@ -97,7 +96,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       }),
                       SizedBox(height: 5),
                       // Mobile Field
-                      _buildTextField('MOBILE', _mobileController, (value) {
+                      _buildTextField('Mobile', _mobileController, (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your mobile number';
                         }
@@ -105,7 +104,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       }),
                       SizedBox(height: 5),
                       // Email Field
-                      _buildTextField('EMAIL', _emailController, (value) {
+                      _buildTextField('Email', _emailController, (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your email';
                         }
@@ -114,7 +113,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       SizedBox(height: 5),
                       // Password Field
                       _buildPasswordField(
-                          'PASSWORD', _passwordController, _obscurePassword,
+                          'Password', _passwordController, _obscurePassword,
                           () {
                         setState(() {
                           _obscurePassword = !_obscurePassword;
@@ -123,7 +122,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       SizedBox(height: 5),
                       // Confirm Password Field
                       _buildPasswordField(
-                          'CONFIRM PASSWORD',
+                          'Confirm Password',
                           _confirmPasswordController,
                           _obscureConfirmPassword, () {
                         setState(() {
@@ -173,34 +172,23 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  Widget _buildTextField(String hintText, TextEditingController controller,
+  /// Builds a stylized text field with the given label and validator
+  Widget _buildTextField(String label, TextEditingController controller,
       String? Function(String?) validator) {
     return TextFormField(
       controller: controller,
-      decoration: InputDecoration(
-        hintText: hintText,
-        filled: true,
-        fillColor: Colors.white,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(50),
-        ),
-      ),
+      decoration: _buildInputDecoration(label),
       validator: validator,
     );
   }
 
-  Widget _buildPasswordField(String hintText, TextEditingController controller,
+  /// Builds a stylized password field with a toggle for visibility
+  Widget _buildPasswordField(String label, TextEditingController controller,
       bool obscureText, VoidCallback toggleObscure) {
     return TextFormField(
       controller: controller,
       obscureText: obscureText,
-      decoration: InputDecoration(
-        hintText: hintText,
-        filled: true,
-        fillColor: Colors.white,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(50),
-        ),
+      decoration: _buildInputDecoration(label).copyWith(
         suffixIcon: IconButton(
           icon: Icon(
             obscureText ? Icons.visibility_off : Icons.visibility,
@@ -215,6 +203,36 @@ class _SignUpPageState extends State<SignUpPage> {
         }
         return null;
       },
+    );
+  }
+
+  /// Defines a consistent input field decoration
+  InputDecoration _buildInputDecoration(String label) {
+    return InputDecoration(
+      labelText: label,
+      labelStyle: TextStyle(color: Colors.black, fontSize: 16),
+      filled: true,
+      fillColor: Colors.white,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(50),
+        borderSide: BorderSide(
+            color: const Color.fromARGB(255, 255, 255, 255), width: 1.5),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(50),
+        borderSide: BorderSide(
+            color: const Color.fromARGB(255, 255, 255, 255), width: 1.5),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(50),
+        borderSide: BorderSide(
+            color: const Color.fromARGB(255, 255, 255, 255), width: 2.0),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(50),
+        borderSide: BorderSide(
+            color: const Color.fromARGB(255, 255, 255, 255), width: 1.5),
+      ),
     );
   }
 }
