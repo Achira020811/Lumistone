@@ -25,4 +25,17 @@ class WaterScanSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = WaterScan
-        fields = '__all__'
+        fields = '__all__'  # Changed from fields = ['location', 'x_nad83', 'y_nad83']
+
+# Serializers for ML Prediction Request
+class PredictionRequestSerializer(serializers.Serializer):
+    location = serializers.CharField(required=True) #User provided location, not coordinate
+    x_nad83 = serializers.FloatField(required=True)
+    y_nad83 = serializers.FloatField(required=True)
+
+
+class PredictionResponseSerializer(serializers.Serializer):
+    location = serializers.CharField()
+    predicted_water = serializers.IntegerField()
+    depth = serializers.FloatField(allow_null=True) #Depth in meter
+    remarks = serializers.CharField() #Sucessful and unsucessful detection

@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+import pandas as pd
 
 # Custom User Model
 class User(AbstractUser):
@@ -21,14 +22,19 @@ class User(AbstractUser):
     def __str__(self):
         return self.username
 
-# Water Level Detection Model
+# Water Level Detection Model (You might want to store scan history)
 class WaterScan(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now_add=True)
-    location = models.CharField(max_length=255)
-    depth_scanned = models.FloatField()
-    water_level = models.FloatField()
-    remarks = models.TextField(blank=True, null=True)
+    location = models.CharField(max_length=255)  # User-entered location name
+    x_nad83 = models.FloatField()              # Coordinate
+    y_nad83 = models.FloatField()              # Coordinate
+    predicted_water = models.IntegerField()    # 0 or 1
+    depth = models.FloatField(blank=True, null=True)  # Depth, if water is found
+    #Remarks can be either successful or unsuccessful detections
+    remarks = models.TextField(blank=True, null=True)  # Successful of unsuccessful detection
+
+
 
     def __str__(self):
-        return f"Scan at {self.location} - {self.water_level}m"
+        return f"Scan at {self.location} - Water: {self.predicted_water}"
