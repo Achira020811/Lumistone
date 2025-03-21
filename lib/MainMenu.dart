@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lumistone/Profile.dart';
-import 'package:lumistone/gem_detector.dart';
 import 'package:lumistone/location%20page.dart';
 import 'package:lumistone/records.dart';
 
