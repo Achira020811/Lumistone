@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lumistone/Profile.dart';
-import 'package:lumistone/GemDetection.dart';
-import 'package:lumistone/WaterLevel.dart';
+import 'package:lumistone/gem_detector.dart';
 import 'package:lumistone/location%20page.dart';
+import 'package:lumistone/records.dart';
 
 void main() {
   runApp(const MyApp());
@@ -140,7 +140,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                               "assets/Gold Detection.png",
                               75.0,
                               75.0,
-                              const NotificationScreen(),
+                              const GoldDetectionScreen(),
                               4,
                             ),
                           ],
@@ -359,15 +359,23 @@ class RecordsScreen extends StatelessWidget {
   const RecordsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) => const WaterLevelDetectionPage();
+  Widget build(BuildContext context) => const MyApp2();
 }
 
 class GemDetectionScreen extends StatelessWidget {
   const GemDetectionScreen({super.key});
 
   @override
-  Widget build(BuildContext context) => const GemDepthSelectionPage();
+  Widget build(BuildContext context) => const LocationPage();
 }
+
+class GoldDetectionScreen extends StatelessWidget {
+  const GoldDetectionScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) => const LocationPage();
+}
+
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});
