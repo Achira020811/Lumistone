@@ -53,11 +53,12 @@ class RecordsScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              
+
               // Main content
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 40, right: 40, bottom: 40, top: 50),
+                  padding: const EdgeInsets.only(
+                      left: 40, right: 40, bottom: 40, top: 50),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -69,9 +70,9 @@ class RecordsScreen extends StatelessWidget {
                           print('Navigate to user information table');
                         },
                       ),
-                      
+
                       const SizedBox(height: 40),
-                      
+
                       // Result Information Table
                       InformationCard(
                         title: 'Result Information Table',
@@ -84,30 +85,33 @@ class RecordsScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              
-              // Bottom Navigation Bar
-              Container(
-                height: 60,
-                color: Colors.white,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    IconButton(
-                      icon: const Icon(Icons.home, size: 30),
-                      onPressed: () {
-                        // Navigate to home
-                        print('Navigate to home');
-                      },
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.person, size: 30),
-                      onPressed: () {
-                        // Navigate to profile
-                        print('Navigate to profile');
-                      },
-                    ),
-                  ],
-                ),
+            ],
+          ),
+        ),
+      ),
+
+      // Bottom Navigation Bar
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.only(bottom: 60),
+        child: Container(
+          height: 60,
+          color: const Color.fromARGB(255, 0, 0, 0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              IconButton(
+                icon: const Icon(Icons.home, size: 30, color: Colors.white),
+                onPressed: () {
+                  // Navigate to home
+                  print('Navigate to home');
+                },
+              ),
+              IconButton(
+                icon: const Icon(Icons.person, size: 30, color: Colors.white),
+                onPressed: () {
+                  // Navigate to profile
+                  print('Navigate to profile');
+                },
               ),
             ],
           ),
