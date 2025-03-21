@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
-from .models import WaterScan
+from .models import WaterScan, GoldScan
 
 User = get_user_model()
 
@@ -39,3 +39,22 @@ class PredictionResponseSerializer(serializers.Serializer):
     predicted_water = serializers.IntegerField()
     depth = serializers.FloatField(allow_null=True) #Depth in meter
     remarks = serializers.CharField() #Sucessful and unsucessful detection
+
+class GoldScanSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
+
+    class Meta:
+        model = GoldScan
+        fields = '__all__'
+
+# Serializers for Gold ML Prediction Request
+class GoldPredictionRequestSerializer(serializers.Serializer):
+    location = serializers.CharField(required=True)
+    x_nad83 = serializers.FloatField(required=True)
+    y_nad83 = serializers.FloatField(required=True)
+
+class GoldPredictionResponseSerializer(serializers.Serializer):
+    location = serializers.CharField()
+    predicted_gold = serializers.IntegerField()
+    confidence = serializers.FloatField(allow_null=True)
+    remarks = serializers.CharField()

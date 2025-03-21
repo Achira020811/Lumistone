@@ -39,3 +39,16 @@ class WaterScan(models.Model):
     def __str__(self):
         return f"Scan at {self.location} - Water: {self.predicted_water}"
 
+# Gold Detection Model
+class GoldScan(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    location = models.CharField(max_length=255)  # User-entered location name
+    x_nad83 = models.FloatField()              # Coordinate
+    y_nad83 = models.FloatField()              # Coordinate
+    predicted_gold = models.IntegerField()     # 0 or 1 (Gold Present or Not)
+    confidence = models.FloatField(blank=True, null=True) # Confidence level of the prediction
+    remarks = models.TextField(blank=True, null=True)  # Remarks about the scan
+
+    def __str__(self):
+        return f"Scan at {self.location} - Gold: {self.predicted_gold}"

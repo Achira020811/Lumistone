@@ -5,15 +5,20 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import get_user_model
 from django.http import HttpResponse
 from rest_framework.decorators import api_view
-from .models import WaterScan
+from .models import WaterScan, GoldScan  # Import GoldScan
 from .serializers import (
     RegisterSerializer,
     UserSerializer,
     WaterScanSerializer,
     PredictionRequestSerializer,
-    PredictionResponseSerializer
+    PredictionResponseSerializer,
+    GoldScanSerializer,  # Import GoldScanSerializer
+    GoldPredictionRequestSerializer, #Import Gold Prediction
+    GoldPredictionResponseSerializer
 )
-from .ml_model import get_prediction_from_db  # Database-driven prediction
+from .water_ml_model import get_prediction_from_db  # Database-driven prediction
+from .gold_ml_model import get_gold_prediction
+import random
 
 # Home View
 def home(request):
@@ -57,7 +62,18 @@ class WaterScanListCreateView(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
-# ML Prediction View
+# Gold Scan Views
+class GoldScanListCreateView(generics.ListCreateAPIView):
+    serializer_class = GoldScanSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return GoldScan.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+# ML Prediction View (Water)
 @api_view(['POST'])
 def predict_water_presence(request):
     try:
@@ -101,9 +117,35 @@ def predict_water_presence(request):
 
             return Response(response_data)
 
-        return Response({"error": "No prediction found for this location."},
-                        status=status.HTTP_404_NOT_FOUND)
-
     except Exception as e:
-        return Response({"error": str(e)},
-                        status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+# ML Prediction View (Gold)
+@api_view(['POST'])
+def predict_gold_presence(request):
+    try:
+        serializer = GoldPredictionRequestSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            data = serializer.validated_data
+            location = data['location']
+            x_nad83 = data['x_nad83']
+            y_nad83 = data['y_nad83']
+
+            # Get prediction from the ML model
+            predicted_gold, confidence = get_gold_prediction(x_nad83, y_nad83)
+            remarks = "Gold detected" if predicted_gold == 1 else "No gold detected"
+
+            GoldScan.objects.create(user=request.user, location=location, x_nad83=x_nad83, y_nad83=y_nad83, predicted_gold=predicted_gold, confidence=confidence, remarks=remarks)
+
+            response_data = GoldPredictionResponseSerializer({
+                'location': location,
+                'predicted_gold': predicted_gold,
+                'confidence': confidence,
+                'remarks': remarks
+            }).data
+
+            return Response(response_data)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    except Exception as e:
+        return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
