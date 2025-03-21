@@ -7,9 +7,9 @@ from api.views import home
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="Water Detection API",
+        title="Lumistone API",
         default_version='v1',
-        description="API docs for authentication and water detection scans",
+        description="API docs for authentication gold detection scans and water detection scans",
     ),
     public=True,
     permission_classes=(permissions.AllowAny,),

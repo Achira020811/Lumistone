@@ -38,3 +38,4 @@ class WaterScan(models.Model):
 
     def __str__(self):
         return f"Scan at {self.location} - Water: {self.predicted_water}"
+
