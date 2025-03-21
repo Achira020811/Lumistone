@@ -3,39 +3,32 @@ import 'package:animate_do/animate_do.dart';
 import 'package:lumistone/MainMenu.dart';
 
 void main() {
-  runApp(const WaterDetectionApp());
+  runApp(const GoldDetectionApp());
 }
 
-
-class WaterDetectionApp extends StatelessWidget {
-  const WaterDetectionApp({super.key});
-
+class GoldDetectionApp extends StatelessWidget {
+  const GoldDetectionApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: WaterDetectionScreen(),
+      home: GoldDetectionScreen(),
     );
   }
 }
 
-
-class WaterDetectionScreen extends StatefulWidget {
-  const WaterDetectionScreen({super.key});
-
-
+class GoldDetectionScreen extends StatefulWidget {
   @override
-  _WaterDetectionScreenState createState() => _WaterDetectionScreenState();
+  _GoldDetectionScreenState createState() => _GoldDetectionScreenState();
 }
 
-class _WaterDetectionScreenState extends State<WaterDetectionScreen> {
-  String waterDepth = ""; // Variable to hold backend value
+class _GoldDetectionScreenState extends State<GoldDetectionScreen> {
+  String goldDepth = "";
 
-  // Function to set water depth value manually (To be updated from backend)
-  void setWaterDepth(String depth) {
+  void setGoldDepth(String depth) {
     setState(() {
-      waterDepth = depth;
+      goldDepth = depth;
     });
   }
 
@@ -67,7 +60,7 @@ class _WaterDetectionScreenState extends State<WaterDetectionScreen> {
               // Animated Checkmark Icon
               BounceInDown(
                 child: Image.asset(
-                  'assets/checkmark.png', 
+                  'assets/checkmark.png',
                   width: 200,
                 ),
               ),
@@ -97,7 +90,7 @@ class _WaterDetectionScreenState extends State<WaterDetectionScreen> {
                 ),
                 child: Center(
                   child: Text(
-                    waterDepth,
+                    goldDepth,
                     style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -110,7 +103,7 @@ class _WaterDetectionScreenState extends State<WaterDetectionScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  _buildExitButton(context, "Exit",
+                  _buildButton(context, "Exit",
                       const Color.fromARGB(255, 245, 234, 238)),
                   const SizedBox(width: 50),
                   _buildButton(context, "Continue",
@@ -121,41 +114,36 @@ class _WaterDetectionScreenState extends State<WaterDetectionScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
-        selectedItemColor: Colors.black,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: '',
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildExitButton(BuildContext context, String text, Color color) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: color,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(50),
+      bottomNavigationBar: Container(
+        height: 60,
+        color: const Color.fromARGB(255, 0, 0, 0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            IconButton(
+              icon: const Icon(Icons.home, size: 30, color: Colors.white),
+              onPressed: () {
+                // Navigate to home
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                );
+                print('Navigate to home');
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.person, size: 30, color: Colors.white),
+              onPressed: () {
+                // Navigate to profile
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                );
+                print('Navigate to profile');
+              },
+            ),
+          ],
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 10),
-      ),
-      onPressed: () {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => HomePage()), // Navigates to Home Page
-        );
-      },
-      child: Text(
-        text,
-        style: const TextStyle(color: Colors.black, fontSize: 16),
       ),
     );
   }
