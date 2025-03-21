@@ -99,6 +99,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       _buildTextField('Mobile', _mobileController, (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your mobile number';
+                        }else if (!RegExp(r'^\d{10}$').hasMatch(value)) {
+                          return 'Please enter a valid mobile number';
                         }
                         return null;
                       }),
