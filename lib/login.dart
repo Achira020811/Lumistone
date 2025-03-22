@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lumistone/MainMenu.dart';
 import 'package:lumistone/signup.dart';
-import 'forgot_password.dart'; // Import the ForgotPasswordPage
-import 'dart:ui'; // Import the dart:ui package for ImageFilter
+import 'forgot_password.dart';
 
 void main() {
   runApp(LumistoneApp());
@@ -42,31 +41,13 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       body: Stack(
         children: [
-          // Background Image and Gradient
+          // Background Image
           Container(
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  const Color.fromARGB(255, 255, 255, 255),
-                  const Color.fromARGB(255, 233, 208, 216),
-                  const Color.fromARGB(255, 254, 216, 230),
-                  const Color.fromARGB(255, 241, 175, 203),
-                  const Color.fromARGB(255, 162, 70, 128),
-                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-              ),
               image: DecorationImage(
-                image: AssetImage('images/gem_bg2.png'),
-                alignment: Alignment(0, 0.9),
-              ),
-            ),
-            child: BackdropFilter(
-              filter: ImageFilter.blur(
-                  sigmaX: 2.0, sigmaY: 1.0), // Adjust the blur intensity
-              child: Container(
-                color:
-                    Colors.black.withOpacity(0), // Adjust the opacity as needed
+                image: AssetImage('assets/gem_bg_new.png'),
+                fit: BoxFit.cover,
+                alignment: Alignment.center,
               ),
             ),
           ),
@@ -87,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                         radius: 80,
                         backgroundColor: Colors.transparent,
                       ),
-                      SizedBox(height: 100), // Adjust spacing for visual appeal
+                      SizedBox(height: 100),
                       // Email Field
                       TextFormField(
                         controller: _emailController,
@@ -147,7 +128,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 100), // Adjust spacing
+                      SizedBox(height: 100),
 
                       // Login Button
                       SizedBox(
@@ -180,8 +161,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                       ),
-                      SizedBox(
-                          height: 15), // Adjust spacing for Sign-Up section
+                      SizedBox(height: 15),
 
                       // Sign Up Text
                       Row(
@@ -202,7 +182,7 @@ class _LoginPageState extends State<LoginPage> {
                               );
                             },
                             child: Text(
-                              'Sign up',
+                              '\n\nSign up',
                               style: TextStyle(
                                 color: const Color.fromARGB(255, 0, 0, 0),
                                 decoration: TextDecoration.underline,
@@ -252,17 +232,3 @@ InputDecoration _buildInputDecoration(String label) {
     ),
   );
 }
-
-// class HomePage extends StatelessWidget {
-//   const HomePage({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(title: Text('Home')),
-//       body: Center(
-//         child: Text('Welcome to Home Page!'),
-//       ),
-//     );
-//   }
-// }
