@@ -41,18 +41,13 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     return Scaffold(
       body: Stack(
         children: [
-          // Background gradient
+          // Background Image
           Container(
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  const Color.fromARGB(255, 250, 219, 230),
-                  const Color.fromARGB(255, 243, 182, 216),
-                  const Color.fromARGB(255, 179, 123, 154),
-                  const Color.fromARGB(255, 146, 73, 114),
-                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
+              image: DecorationImage(
+                image: AssetImage('assets/gem_bg_new.png'),
+                fit: BoxFit.cover,
+                alignment: Alignment.center,
               ),
             ),
           ),
