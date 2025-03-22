@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
 void main() {
   runApp(MyApp());
@@ -23,6 +25,21 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   TextEditingController fullNameController = TextEditingController();
   TextEditingController roleController = TextEditingController();
   TextEditingController dateController = TextEditingController();
+
+  File? _image;
+  final ImagePicker _picker =
+      ImagePicker(); // Corrected ImagePicker initialization
+
+  Future<void> _pickImage() async {
+    final XFile? pickedFile =
+        await _picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      setState(() {
+        _image = File(pickedFile.path);
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,24 +71,33 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
               ),
               SizedBox(height: 4),
               Text(
-                'User Information Table,',
+                'User Information Table',
                 style: TextStyle(
                   fontSize: 14,
                   color: Colors.white70,
                 ),
               ),
               SizedBox(height: 20),
+
+              // Image Picker (Fixed)
               Center(
-                child: CircleAvatar(
-                  radius: 40,
-                  backgroundColor: Colors.black,
-                  child: Icon(
-                    Icons.person,
-                    color: Colors.white,
-                    size: 50,
+                child: GestureDetector(
+                  onTap: _pickImage,
+                  child: CircleAvatar(
+                    radius: 50,
+                    backgroundColor: Colors.black,
+                    backgroundImage: _image != null ? FileImage(_image!) : null,
+                    child: _image == null
+                        ? Icon(
+                            Icons.add_a_photo,
+                            color: Colors.white,
+                            size: 30,
+                          )
+                        : null,
                   ),
                 ),
               ),
+
               SizedBox(height: 20),
               _buildInfoField('User ID'),
               _buildTextField('Full Name', fullNameController),
