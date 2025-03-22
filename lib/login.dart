@@ -38,6 +38,10 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    // Get the screen width and height
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: Stack(
         children: [
@@ -55,7 +59,8 @@ class _LoginPageState extends State<LoginPage> {
           Center(
             child: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                padding: EdgeInsets.symmetric(
+                    horizontal: screenWidth * 0.08), // Dynamic padding
                 child: Form(
                   key: _formKey,
                   child: Column(
@@ -65,10 +70,12 @@ class _LoginPageState extends State<LoginPage> {
                       // Logo
                       CircleAvatar(
                         backgroundImage: AssetImage('assets/gem_logo2.png'),
-                        radius: 80,
+                        radius:
+                            screenWidth * 0.2, // Responsive size for the logo
                         backgroundColor: Colors.transparent,
                       ),
-                      SizedBox(height: 100),
+                      SizedBox(
+                          height: screenHeight * 0.05), // Responsive spacing
                       // Email Field
                       TextFormField(
                         controller: _emailController,
@@ -129,18 +136,19 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 100),
+                      SizedBox(
+                          height: screenHeight * 0.1), // Responsive spacing
 
                       // Login Button
                       SizedBox(
-                        width: 200,
+                        width: screenWidth * 0.5, // Responsive width for button
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(50),
                             ),
-                            padding: EdgeInsets.symmetric(vertical: 16),
+                            padding: EdgeInsets.symmetric(vertical: 1),
                           ),
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
@@ -157,7 +165,8 @@ class _LoginPageState extends State<LoginPage> {
                             style: TextStyle(
                               color: const Color.fromARGB(255, 0, 0, 0),
                               fontWeight: FontWeight.bold,
-                              fontSize: 30,
+                              fontSize:
+                                  screenWidth * 0.08, // Responsive font size
                             ),
                           ),
                         ),
