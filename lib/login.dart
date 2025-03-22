@@ -110,7 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       const SizedBox(height: 30),
 
-                      // Forgot Password
+                      // Forgot Password (Bolded text)
                       GestureDetector(
                         onTap: () {
                           Navigator.push(
@@ -123,6 +123,7 @@ class _LoginPageState extends State<LoginPage> {
                         child: Text(
                           'Forgot Password?',
                           style: TextStyle(
+                            fontWeight: FontWeight.bold, // Bold text
                             color: const Color.fromARGB(255, 0, 0, 0),
                             decoration: TextDecoration.underline,
                           ),
@@ -139,7 +140,7 @@ class _LoginPageState extends State<LoginPage> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(50),
                             ),
-                            padding: EdgeInsets.symmetric(vertical: 1),
+                            padding: EdgeInsets.symmetric(vertical: 16),
                           ),
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
@@ -163,7 +164,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       SizedBox(height: 15),
 
-                      // Sign Up Text
+                      // Sign Up Text (Bolded and moved to next line)
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -173,23 +174,25 @@ class _LoginPageState extends State<LoginPage> {
                               color: Colors.white,
                             ),
                           ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => SignUpPage()),
-                              );
-                            },
-                            child: Text(
-                              '\n\nSign up',
-                              style: TextStyle(
-                                color: const Color.fromARGB(255, 0, 0, 0),
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ),
                         ],
+                      ),
+                      SizedBox(height: 5), // Added spacing for Sign Up
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SignUpPage()),
+                          );
+                        },
+                        child: Text(
+                          'Sign up',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold, // Bold text
+                            color: const Color.fromARGB(255, 0, 0, 0),
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -201,34 +204,34 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-}
 
-InputDecoration _buildInputDecoration(String label) {
-  return InputDecoration(
-    labelText: label,
-    labelStyle:
-        TextStyle(color: const Color.fromARGB(255, 0, 0, 0), fontSize: 16),
-    filled: true,
-    fillColor: Colors.white,
-    border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(50),
-      borderSide: BorderSide(
-          color: const Color.fromARGB(255, 255, 255, 255), width: 1.5),
-    ),
-    enabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(50),
-      borderSide: BorderSide(
-          color: const Color.fromARGB(255, 255, 255, 255), width: 1.5),
-    ),
-    focusedBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(50),
-      borderSide: BorderSide(
-          color: const Color.fromARGB(255, 255, 255, 255), width: 2.0),
-    ),
-    errorBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(50),
-      borderSide: BorderSide(
-          color: const Color.fromARGB(255, 255, 255, 255), width: 1.5),
-    ),
-  );
+  InputDecoration _buildInputDecoration(String label) {
+    return InputDecoration(
+      labelText: label,
+      labelStyle:
+          TextStyle(color: const Color.fromARGB(255, 0, 0, 0), fontSize: 16),
+      filled: true,
+      fillColor: Colors.white,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(50),
+        borderSide: BorderSide(
+            color: const Color.fromARGB(255, 255, 255, 255), width: 1.5),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(50),
+        borderSide: BorderSide(
+            color: const Color.fromARGB(255, 255, 255, 255), width: 1.5),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(50),
+        borderSide: BorderSide(
+            color: const Color.fromARGB(255, 255, 255, 255), width: 2.0),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(50),
+        borderSide: BorderSide(
+            color: const Color.fromARGB(255, 255, 255, 255), width: 1.5),
+      ),
+    );
+  }
 }
