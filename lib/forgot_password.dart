@@ -86,7 +86,9 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                         decoration: _buildInputDecoration('Phone Number'),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter your phone number';
+                            return 'Please enter your Phone number';
+                          } else if (!RegExp(r'^\d{10}$').hasMatch(value)) {
+                            return 'Please enter a valid Phone number';
                           }
                           return null;
                         },
