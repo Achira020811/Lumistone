@@ -41,6 +41,10 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
+    // Get the screen width and height
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: Stack(
         children: [
@@ -58,8 +62,8 @@ class _SignUpPageState extends State<SignUpPage> {
           Center(
             child: SingleChildScrollView(
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                padding: EdgeInsets.symmetric(
+                    horizontal: screenWidth * 0.08, vertical: 10),
                 child: Form(
                   key: _formKey,
                   child: Column(
@@ -69,14 +73,14 @@ class _SignUpPageState extends State<SignUpPage> {
                       // Logo
                       CircleAvatar(
                         backgroundImage: AssetImage('assets/gem_logo2.png'),
-                        radius: 80,
+                        radius: screenWidth * 0.2, // Responsive logo size
                         backgroundColor: Colors.transparent,
                       ),
-                      SizedBox(height: 50),
+                      SizedBox(height: screenHeight * 0.05),
                       Text(
                         'SIGN UP',
                         style: TextStyle(
-                          fontSize: 15,
+                          fontSize: screenWidth * 0.06, // Responsive font size
                           fontWeight: FontWeight.w500,
                           color: Colors.black,
                         ),
@@ -129,7 +133,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       SizedBox(height: 40),
                       // Sign-Up Button
                       SizedBox(
-                        width: 200,
+                        width: screenWidth * 0.6, // Responsive button width
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
@@ -152,7 +156,8 @@ class _SignUpPageState extends State<SignUpPage> {
                             'Sign up',
                             style: TextStyle(
                               color: Colors.black,
-                              fontSize: 30,
+                              fontSize:
+                                  screenWidth * 0.08, // Responsive font size
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -207,29 +212,32 @@ class _SignUpPageState extends State<SignUpPage> {
   InputDecoration _buildInputDecoration(String label) {
     return InputDecoration(
       labelText: label,
-      labelStyle: TextStyle(color: Colors.black, fontSize: 16),
+      labelStyle:
+          TextStyle(color: const Color.fromARGB(255, 0, 0, 0), fontSize: 16),
       filled: true,
-      fillColor: Colors.white,
+      fillColor:
+          Colors.white.withOpacity(0.3), // Make background semi-transparent
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(50),
-        borderSide: BorderSide(
-            color: const Color.fromARGB(255, 255, 255, 255), width: 1.5),
+        borderSide: BorderSide(color: Colors.white, width: 1.5),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(50),
-        borderSide: BorderSide(
-            color: const Color.fromARGB(255, 255, 255, 255), width: 1.5),
+        borderSide: BorderSide(color: Colors.white, width: 1.5),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(50),
-        borderSide: BorderSide(
-            color: const Color.fromARGB(255, 255, 255, 255), width: 2.0),
+        borderSide: BorderSide(color: Colors.white, width: 2.0),
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(50),
-        borderSide: BorderSide(
-            color: const Color.fromARGB(255, 255, 255, 255), width: 1.5),
+        borderSide: BorderSide(color: Colors.white, width: 1.5),
       ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(50),
+        borderSide: BorderSide(color: Colors.white, width: 1.5),
+      ),
+      contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
     );
   }
 }
