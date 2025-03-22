@@ -5,6 +5,20 @@ class ResultInfoScreen extends StatefulWidget {
   _ResultInfoScreenState createState() => _ResultInfoScreenState();
 }
 
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: ResultInfoScreen(),
+    );
+  }
+}
+
 class _ResultInfoScreenState extends State<ResultInfoScreen> {
   String? _selectedZone;
   String? _selectedDepth;
@@ -53,7 +67,7 @@ class _ResultInfoScreenState extends State<ResultInfoScreen> {
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: Image.asset(
-                'lib/assets/Gold_Database.png',
+                'assets/Gold_Database.png',
                 height: 150,
                 width: double.infinity,
                 fit: BoxFit.cover,
