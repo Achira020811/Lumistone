@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:lumistone/MainMenu.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 void main() {
   runApp(const WaterDetectionApp());
@@ -32,11 +34,32 @@ class WaterDetectionScreen extends StatefulWidget {
 class _WaterDetectionScreenState extends State<WaterDetectionScreen> {
   String waterDepth = ""; // Variable to hold backend value
 
-  // Function to set water depth value manually (To be updated from backend)
-  void setWaterDepth(String depth) {
-    setState(() {
-      waterDepth = depth;
-    });
+  @override
+  void initState() {
+    super.initState();
+    _fetchWaterDepth();
+  }
+
+  Future<void> _fetchWaterDepth() async {
+    final url = Uri.parse('http://127.0.0.1:8000/api/constant_depth/');
+    final response = await http.get(
+      url,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      setState(() {
+        waterDepth = data['depth'];
+      });
+    } else {
+      print('Failed to fetch water depth: ${response.statusCode}');
+      setState(() {
+        waterDepth = "Error"; // Display an error message
+      });
+    }
   }
 
   @override
@@ -67,7 +90,7 @@ class _WaterDetectionScreenState extends State<WaterDetectionScreen> {
               // Animated Checkmark Icon
               BounceInDown(
                 child: Image.asset(
-                  'assets/checkmark.png', 
+                  'assets/checkmark.png',
                   width: 200,
                 ),
               ),

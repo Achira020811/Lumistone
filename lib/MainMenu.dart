@@ -33,8 +33,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _fadeAnimation;
-  List<bool> _isHovered = List.generate(5, (_) => false);
-  List<bool> _isPressed = List.generate(5, (_) => false);
+  final List<bool> _isHovered = List.generate(5, (_) => false);
+  final List<bool> _isPressed = List.generate(5, (_) => false);
 
   @override
   void initState() {
