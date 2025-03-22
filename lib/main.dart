@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:lumistone/FrontPage2.dart';
+// import 'package:lumistone/FrontPage2.dart';
 import 'package:lumistone/main_log.dart';
 
 void main() {
@@ -15,8 +15,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: AnimatedSplashScreen(
-        splash: SplashScreen(),
-        nextScreen: Screen1(),
+        splash: GradientBackgroundScreen(),
+        nextScreen:MyApp1(),
         splashIconSize: double.infinity,
         duration: 3000,
         splashTransition: SplashTransition.fadeTransition,
@@ -58,61 +58,38 @@ class GradientBackgroundScreen extends StatelessWidget {
       body: SafeArea(
         child: Container(
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Colors.pink.shade100,
-                Color.fromARGB(
-                    255, 111, 25, 74) // Bottom color (purplish gradient)
-              ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
+            image: DecorationImage(
+              image: AssetImage("assets/Background image.jpg"), 
+              fit: BoxFit.cover,
             ),
           ),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Image.asset(
-                  "assets/Logo Crop.png",
-                  height: 150,
+                Center(
+                  child: Image.asset(
+                    "assets/gem_logo2.png",
+                    height: 350,
+                  ),
                 ),
-        
-                // Add your content like the logo and text here
-                // CircleAvatar(
-                //   backgroundColor: Colors.black,
-                //   radius: 60,
-                //   child: Icon(
-                //     Icons.diamond,
-                //     color: Colors.pinkAccent,
-                //     size: 60,
-                //   ),
-                // ),
-                // SizedBox(height: 20),
+                SizedBox(height: 10),
                 // Text(
-                //   'LUMISTONE',
+                //   'AI Powered ',
+                //   textAlign: TextAlign.start,
                 //   style: TextStyle(
                 //     fontSize: 24,
-                //     fontWeight: FontWeight.bold,
-                //     color: Colors.white,
+                //     color: Colors.black,
                 //   ),
                 // ),
-                SizedBox(height: 10),
-                Text(
-                  'AI Powered ',
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.white,
-                  ),
-                ),
-                Text(
-                  ' Gem Detector System',
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.white,
-                  ),
-                ),
+                // Text(
+                //   ' Gem Detector System',
+                //   textAlign: TextAlign.start,
+                //   style: TextStyle(
+                //     fontSize: 24,
+                //     color: Colors.black,
+                //   ),
+                // ),
               ],
             ),
           ),

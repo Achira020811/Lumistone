@@ -42,7 +42,8 @@ class CommonPage extends StatelessWidget {
   final String email;
   final String mobile;
 
-  const CommonPage({super.key, 
+  const CommonPage({
+    super.key,
     required this.title,
     required this.email,
     required this.mobile,
@@ -63,7 +64,8 @@ class CommonPage extends StatelessWidget {
                   padding: EdgeInsets.symmetric(vertical: 40),
                   decoration: BoxDecoration(
                     color: const Color.fromARGB(255, 240, 130, 167),
-                    borderRadius: BorderRadius.vertical(bottom: Radius.circular(15)),
+                    borderRadius:
+                        BorderRadius.vertical(bottom: Radius.circular(15)),
                   ),
                   child: Column(
                     children: [
@@ -107,9 +109,9 @@ class CommonPage extends StatelessWidget {
                 ElevatedButton(
                   onPressed: () => {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) =>MyApp1()),
-                      ),
+                      context,
+                      MaterialPageRoute(builder: (context) => MyApp1()),
+                    ),
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
@@ -138,8 +140,32 @@ class CommonPage extends StatelessWidget {
                 onPressed: () {
                   // Navigate to Profile Screen
                 },
-                child: Icon(Icons.account_circle, size: 30, color: Colors.white),
+                child: Icon(Icons.account_circle,
+                    size: 30, color: const Color.fromARGB(255, 255, 255, 255)),
               ),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: 60,
+        color: const Color.fromARGB(255, 0, 0, 0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            IconButton(
+              icon: const Icon(Icons.home, size: 30, color: Colors.white),
+              onPressed: () {
+                // Navigate to home
+                print('Navigate to home');
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.person, size: 30, color: Colors.white),
+              onPressed: () {
+                // Navigate to profile
+                print('Navigate to profile');
+              },
             ),
           ],
         ),
@@ -167,7 +193,8 @@ class CommonPage extends StatelessWidget {
 Future<User> fetchUserData() async {
   // Replace this with your actual database fetching logic
   await Future.delayed(Duration(seconds: 2)); // Simulate network delay
-  return User(name: "JOHN SMITH", email: "ABC123@gmail.com", mobile: "+94xxxxxxxxxx");
+  return User(
+      name: "JOHN SMITH", email: "ABC123@gmail.com", mobile: "+94xxxxxxxxxx");
 }
 
 class User {
