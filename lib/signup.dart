@@ -44,18 +44,13 @@ class _SignUpPageState extends State<SignUpPage> {
     return Scaffold(
       body: Stack(
         children: [
-          // Background gradient
+          // Background Image
           Container(
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  const Color.fromARGB(255, 250, 219, 230),
-                  const Color.fromARGB(255, 243, 182, 216),
-                  const Color.fromARGB(255, 179, 123, 154),
-                  const Color.fromARGB(255, 146, 73, 114),
-                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
+              image: DecorationImage(
+                image: AssetImage('assets/gem_bg_new.png'),
+                fit: BoxFit.cover,
+                alignment: Alignment.center,
               ),
             ),
           ),
@@ -96,9 +91,11 @@ class _SignUpPageState extends State<SignUpPage> {
                       }),
                       SizedBox(height: 5),
                       // Mobile Field
-                      _buildTextField('Mobile', _mobileController, (value) {
+                      _buildTextField('Phone', _mobileController, (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter your mobile number';
+                          return 'Please enter your Phone number';
+                        } else if (!RegExp(r'^\d{10}$').hasMatch(value)) {
+                          return 'Please enter a valid Phone number';
                         }
                         return null;
                       }),

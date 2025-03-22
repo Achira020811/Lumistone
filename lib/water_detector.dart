@@ -6,10 +6,8 @@ void main() {
   runApp(const WaterDetectionApp());
 }
 
-
 class WaterDetectionApp extends StatelessWidget {
   const WaterDetectionApp({super.key});
-
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +18,8 @@ class WaterDetectionApp extends StatelessWidget {
   }
 }
 
-
 class WaterDetectionScreen extends StatefulWidget {
   const WaterDetectionScreen({super.key});
-
 
   @override
   _WaterDetectionScreenState createState() => _WaterDetectionScreenState();
@@ -67,7 +63,7 @@ class _WaterDetectionScreenState extends State<WaterDetectionScreen> {
               // Animated Checkmark Icon
               BounceInDown(
                 child: Image.asset(
-                  'assets/checkmark.png', 
+                  'assets/checkmark.png',
                   width: 200,
                 ),
               ),
@@ -150,7 +146,8 @@ class _WaterDetectionScreenState extends State<WaterDetectionScreen> {
       onPressed: () {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => HomePage()), // Navigates to Home Page
+          MaterialPageRoute(
+              builder: (context) => HomePage()), // Navigates to Home Page
         );
       },
       child: Text(

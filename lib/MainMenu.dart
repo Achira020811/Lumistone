@@ -31,7 +31,8 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _fadeAnimation;
   List<bool> _isHovered = List.generate(5, (_) => false);
@@ -237,7 +238,11 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
             duration: const Duration(milliseconds: 150),
             curve: Curves.easeInOut,
             transform: Matrix4.identity()
-              ..scale(isPressed ? 0.95 : isHovered ? 1.08 : 1.0)
+              ..scale(isPressed
+                  ? 0.95
+                  : isHovered
+                      ? 1.08
+                      : 1.0)
               ..translate(0.0, isHovered ? -8.0 : 0.0),
             child: Container(
               decoration: BoxDecoration(
@@ -249,12 +254,28 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                 borderRadius: BorderRadius.circular(15),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(
-                        isPressed ? 0.3 : isHovered ? 0.25 : 0.1),
-                    blurRadius: isPressed ? 24 : isHovered ? 16 : 8,
-                    offset:
-                        Offset(0, isPressed ? 2 : isHovered ? 8 : 4),
-                    spreadRadius: isPressed ? 1 : isHovered ? 4 : 2,
+                    color: Colors.black.withOpacity(isPressed
+                        ? 0.3
+                        : isHovered
+                            ? 0.25
+                            : 0.1),
+                    blurRadius: isPressed
+                        ? 24
+                        : isHovered
+                            ? 16
+                            : 8,
+                    offset: Offset(
+                        0,
+                        isPressed
+                            ? 2
+                            : isHovered
+                                ? 8
+                                : 4),
+                    spreadRadius: isPressed
+                        ? 1
+                        : isHovered
+                            ? 4
+                            : 2,
                   ),
                 ],
                 border: Border.all(
@@ -272,7 +293,11 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                   AnimatedContainer(
                     duration: const Duration(milliseconds: 150),
                     transform: Matrix4.identity()
-                      ..scale(isPressed ? 0.9 : isHovered ? 1.15 : 1.0),
+                      ..scale(isPressed
+                          ? 0.9
+                          : isHovered
+                              ? 1.15
+                              : 1.0),
                     child: Image.asset(
                       imagePath,
                       width: imageWidth,
@@ -284,7 +309,11 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
                     duration: const Duration(milliseconds: 150),
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: isPressed ? 20 : isHovered ? 18 : 16,
+                      fontSize: isPressed
+                          ? 20
+                          : isHovered
+                              ? 18
+                              : 16,
                       color: isPressed
                           ? Colors.black
                           : isHovered

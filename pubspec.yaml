@@ -71,9 +71,10 @@ flutter:
   assets:
     - assets/
     - assets/gem_logo.png
-    - assets/gem_background.jpg
+    - assets/gem_background.png
     - assets/Water Detection icon.png
     - assets/gem_logo2.png
+    - assets/gem_bg_new.png
 
 
     
