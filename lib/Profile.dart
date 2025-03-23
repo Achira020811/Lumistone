@@ -5,6 +5,20 @@ void main() {
   runApp(MyApp());
 }
 
+class User {
+  final String name;
+  final String email;
+  final String mobile;
+  final String? imageUrl;  // Made optional with nullable type
+
+  User({
+    required this.name, 
+    required this.email, 
+    required this.mobile,
+    this.imageUrl,
+  });
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -14,7 +28,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: SafeArea(
         child: FutureBuilder<User>(
-          future: fetchUserData(), // Fetch user data from the database
+          future: fetchUserData(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(child: CircularProgressIndicator());
@@ -28,6 +42,7 @@ class MyApp extends StatelessWidget {
                 title: user.name,
                 email: user.email,
                 mobile: user.mobile,
+                imageUrl: user.imageUrl,
               );
             }
           },
@@ -41,12 +56,14 @@ class CommonPage extends StatelessWidget {
   final String title;
   final String email;
   final String mobile;
+  final String? imageUrl;
 
   const CommonPage({
     super.key,
     required this.title,
     required this.email,
     required this.mobile,
+    this.imageUrl,
   });
 
   @override
@@ -64,12 +81,28 @@ class CommonPage extends StatelessWidget {
                   padding: EdgeInsets.symmetric(vertical: 40),
                   decoration: BoxDecoration(
                     color: const Color.fromARGB(255, 240, 130, 167),
-                    borderRadius:
-                        BorderRadius.vertical(bottom: Radius.circular(15)),
+                    borderRadius: BorderRadius.vertical(bottom: Radius.circular(15)),
                   ),
                   child: Column(
                     children: [
-                      Icon(Icons.account_circle, size: 80, color: Colors.black),
+                      if (imageUrl != null && imageUrl!.isNotEmpty)
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(40),
+                          child: Image.network(
+                            imageUrl!,
+                            width: 80,
+                            height: 80,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) {
+                              return Icon(Icons.account_circle, 
+                                size: 80, 
+                                color: Colors.black
+                              );
+                            },
+                          ),
+                        )
+                      else
+                        Icon(Icons.account_circle, size: 80, color: Colors.black),
                       SizedBox(height: 10),
                       Text(
                         title,
@@ -130,7 +163,6 @@ class CommonPage extends StatelessWidget {
                 SizedBox(height: 20),
               ],
             ),
-
           ],
         ),
       ),
@@ -178,16 +210,11 @@ class CommonPage extends StatelessWidget {
 
 // Mock user data fetching function
 Future<User> fetchUserData() async {
-  // Replace this with your actual database fetching logic
-  await Future.delayed(Duration(seconds: 2)); // Simulate network delay
+  await Future.delayed(Duration(seconds: 2));
   return User(
-      name: "JOHN SMITH", email: "ABC123@gmail.com", mobile: "+94xxxxxxxxxx");
-}
-
-class User {
-  final String name;
-  final String email;
-  final String mobile;
-
-  User({required this.name, required this.email, required this.mobile});
+    name: "JOHN SMITH", 
+    email: "ABC123@gmail.com", 
+    mobile: "+94xxxxxxxxxx",
+    imageUrl: "https://your-database-image-url.com/profile.jpg", // Add your actual image URL here
+  );
 }
