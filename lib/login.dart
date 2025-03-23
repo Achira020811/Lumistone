@@ -38,7 +38,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    // Get the screen width and height
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
@@ -59,8 +58,7 @@ class _LoginPageState extends State<LoginPage> {
           Center(
             child: SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: screenWidth * 0.08), // Dynamic padding
+                padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.08),
                 child: Form(
                   key: _formKey,
                   child: Column(
@@ -70,12 +68,11 @@ class _LoginPageState extends State<LoginPage> {
                       // Logo
                       CircleAvatar(
                         backgroundImage: AssetImage('assets/gem_logo2.png'),
-                        radius:
-                            screenWidth * 0.2, // Responsive size for the logo
+                        radius: screenWidth * 0.2,
                         backgroundColor: Colors.transparent,
                       ),
-                      SizedBox(
-                          height: screenHeight * 0.05), // Responsive spacing
+                      SizedBox(height: screenHeight * 0.05),
+
                       // Email Field
                       TextFormField(
                         controller: _emailController,
@@ -117,31 +114,37 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       const SizedBox(height: 30),
 
-                      // Forgot Password (Bolded text)
+                      // Forgot Password with Animation
                       GestureDetector(
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(
-                              builder: (context) => ForgotPasswordPage(),
+                            PageRouteBuilder(
+                              transitionDuration:
+                                  const Duration(milliseconds: 500),
+                              pageBuilder:
+                                  (context, animation, secondaryAnimation) =>
+                                      FadeTransition(
+                                opacity: animation,
+                                child: ForgotPasswordPage(),
+                              ),
                             ),
                           );
                         },
                         child: Text(
                           'Forgot Password?',
                           style: TextStyle(
-                            fontWeight: FontWeight.bold, // Bold text
+                            fontWeight: FontWeight.bold,
                             color: const Color.fromARGB(255, 0, 0, 0),
                             decoration: TextDecoration.underline,
                           ),
                         ),
                       ),
-                      SizedBox(
-                          height: screenHeight * 0.1), // Responsive spacing
+                      SizedBox(height: screenHeight * 0.1),
 
                       // Login Button
                       SizedBox(
-                        width: screenWidth * 0.5, // Responsive width for button
+                        width: screenWidth * 0.5,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
@@ -165,15 +168,14 @@ class _LoginPageState extends State<LoginPage> {
                             style: TextStyle(
                               color: const Color.fromARGB(255, 0, 0, 0),
                               fontWeight: FontWeight.bold,
-                              fontSize:
-                                  screenWidth * 0.08, // Responsive font size
+                              fontSize: screenWidth * 0.08,
                             ),
                           ),
                         ),
                       ),
                       SizedBox(height: 15),
 
-                      // Sign Up Text (Bolded and moved to next line)
+                      // Sign Up Text
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -185,19 +187,29 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 5), // Added spacing for Sign Up
+                      SizedBox(height: 5),
+
+                      // Sign Up Button with Animation
                       GestureDetector(
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(
-                                builder: (context) => SignUpPage()),
+                            PageRouteBuilder(
+                              transitionDuration:
+                                  const Duration(milliseconds: 500),
+                              pageBuilder:
+                                  (context, animation, secondaryAnimation) =>
+                                      FadeTransition(
+                                opacity: animation,
+                                child: SignUpPage(),
+                              ),
+                            ),
                           );
                         },
                         child: Text(
                           'Sign up',
                           style: TextStyle(
-                            fontWeight: FontWeight.bold, // Bold text
+                            fontWeight: FontWeight.bold,
                             color: const Color.fromARGB(255, 0, 0, 0),
                             decoration: TextDecoration.underline,
                           ),
@@ -220,8 +232,7 @@ class _LoginPageState extends State<LoginPage> {
       labelStyle:
           TextStyle(color: const Color.fromARGB(255, 0, 0, 0), fontSize: 16),
       filled: true,
-      fillColor:
-          Colors.white.withOpacity(0.3), // Make background semi-transparent
+      fillColor: Colors.white.withOpacity(0.3),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(50),
         borderSide: BorderSide(color: Colors.white, width: 1.5),
@@ -238,7 +249,6 @@ class _LoginPageState extends State<LoginPage> {
         borderRadius: BorderRadius.circular(50),
         borderSide: BorderSide(color: Colors.white, width: 1.5),
       ),
-      // Add these to ensure text is visible on transparent background
       hintStyle: TextStyle(color: Colors.white.withOpacity(0.7)),
       contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
     );
