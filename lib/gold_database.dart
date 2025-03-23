@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:lumistone/MainMenu.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MyApp5());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp5 extends StatelessWidget {
+  const MyApp5({super.key});
 
   @override
   Widget build(BuildContext context) {

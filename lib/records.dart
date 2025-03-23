@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:lumistone/Profile.dart';
+import 'package:lumistone/database%20copy.dart';
+import 'package:lumistone/gem_database.dart';
+import 'package:lumistone/gold_database.dart';
+import 'package:lumistone/user_info.dart';
 
 void main() {
   runApp(const MyApp2());
@@ -31,7 +36,7 @@ class RecordsScreen extends StatelessWidget {
         children: [
           // Background Image with Opacity
           Opacity(
-            opacity: 0.7, // Adjust this value between 0.0 and 1.0
+            opacity: 0.7,
             child: Image.asset(
               'assets/records_new.png',
               fit: BoxFit.fill,
@@ -87,25 +92,69 @@ class RecordsScreen extends StatelessWidget {
                           InformationCard(
                             title: 'User Information Table',
                             onTap: () {
-                              print('Navigate to user information table');
+                               Navigator.push(
+                                context,
+                                PageRouteBuilder(
+                                  pageBuilder: (context, animation, secondaryAnimation) =>
+                                        MyApp3(),
+                                  transitionsBuilder:
+                                      (context, animation, secondaryAnimation, child) {
+                                    return FadeTransition(opacity: animation, child: child);
+                                  },
+                                  transitionDuration: const Duration(milliseconds: 500),
+                                ),
+                              );
                             },
                           ),
                           InformationCard(
-                            title: 'Result Information Table',
+                            title: 'Water Information Table',
                             onTap: () {
-                              print('Navigate to result information table');
+                              Navigator.push(
+                                context,
+                                PageRouteBuilder(
+                                  pageBuilder: (context, animation, secondaryAnimation) =>
+                                      const MyApp4(),
+                                  transitionsBuilder:
+                                      (context, animation, secondaryAnimation, child) {
+                                    return FadeTransition(opacity: animation, child: child);
+                                  },
+                                  transitionDuration: const Duration(milliseconds: 500),
+                                ),
+                              );
                             },
                           ),
                           InformationCard(
                             title: 'Gold Information Table',
                             onTap: () {
-                              print('Navigate to activity information table');
+                              Navigator.push(
+                                context,
+                                PageRouteBuilder(
+                                  pageBuilder: (context, animation, secondaryAnimation) =>
+                                      const MyApp5(),
+                                  transitionsBuilder:
+                                      (context, animation, secondaryAnimation, child) {
+                                    return FadeTransition(opacity: animation, child: child);
+                                  },
+                                  transitionDuration: const Duration(milliseconds: 500),
+                                ),
+                              );
                             },
                           ),
                           InformationCard(
                             title: 'Gem Information Table',
                             onTap: () {
-                              print('Navigate to settings information table');
+                              Navigator.push(
+                                context,
+                                PageRouteBuilder(
+                                  pageBuilder: (context, animation, secondaryAnimation) =>
+                                      const MyApp6(),
+                                  transitionsBuilder:
+                                      (context, animation, secondaryAnimation, child) {
+                                    return FadeTransition(opacity: animation, child: child);
+                                  },
+                                  transitionDuration: const Duration(milliseconds: 500),
+                                ),
+                              );
                             },
                           ),
                         ],
@@ -130,13 +179,28 @@ class RecordsScreen extends StatelessWidget {
               IconButton(
                 icon: const Icon(Icons.home, size: 30, color: Colors.white),
                 onPressed: () {
-                  print('Navigate to home');
+                  Navigator.pop(context);
                 },
               ),
               IconButton(
                 icon: const Icon(Icons.person, size: 30, color: Colors.white),
                 onPressed: () {
-                  print('Navigate to profile');
+                  Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (context, animation, secondaryAnimation) =>
+                          const CommonPage(
+                            title: 'User Profile',
+                            email: 'user@example.com',
+                            mobile: '123-456-7890',
+                          ),
+                      transitionsBuilder:
+                          (context, animation, secondaryAnimation, child) {
+                        return FadeTransition(opacity: animation, child: child);
+                      },
+                      transitionDuration: const Duration(milliseconds: 500),
+                    ),
+                  );
                 },
               ),
             ],
