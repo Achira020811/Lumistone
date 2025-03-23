@@ -27,80 +27,96 @@ class RecordsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     body: Container(
-  decoration: const BoxDecoration(
-    gradient: LinearGradient(
-      colors: [
-        Color.fromARGB(255, 250, 219, 230),
-        Color.fromARGB(255, 243, 182, 216),
-        Color.fromARGB(255, 179, 123, 154),
-        Color.fromARGB(255, 146, 73, 114),
-      ],
-      begin: Alignment.topCenter,
-      end: Alignment.bottomCenter,
-    ),
-  ),
-        child: SafeArea(
-          child: Column(
-            children: [
-              // Header
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 60),
-                child: Text(
-                  'Records',
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                ),
+      body: Stack(
+        children: [
+          // Background Image with Opacity
+          Opacity(
+            opacity: 0.7, // Adjust this value between 0.0 and 1.0
+            child: Image.asset(
+              'assets/records_new.png',
+              fit: BoxFit.fill,
+              width: double.infinity,
+              height: double.infinity,
+            ),
+          ),
+          // Gradient Overlay
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  const Color.fromARGB(255, 250, 219, 230).withOpacity(0.9),
+                  const Color.fromARGB(255, 243, 182, 216).withOpacity(0.8),
+                  const Color.fromARGB(255, 179, 123, 154).withOpacity(0.8),
+                  const Color.fromARGB(255, 146, 73, 114).withOpacity(0.8),
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
               ),
-
-              // Main content
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        left: 40, right: 40, bottom: 50, top: 10),
-                    child: GridView.count(
-                      crossAxisCount: 2,
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      mainAxisSpacing: 40,
-                      crossAxisSpacing: 40,
-                      children: [
-                        InformationCard(
-                          title: 'User Information Table',
-                          onTap: () {
-                            print('Navigate to user information table');
-                          },
-                        ),
-                        InformationCard(
-                          title: 'Result Information Table',
-                          onTap: () {
-                            print('Navigate to result information table');
-                          },
-                        ),
-                        InformationCard(
-                          title: 'Activity Information Table',
-                          onTap: () {
-                            print('Navigate to activity information table');
-                          },
-                        ),
-                        InformationCard(
-                          title: 'Settings Information Table',
-                          onTap: () {
-                            print('Navigate to settings information table');
-                          },
-                        ),
-                      ],
+            ),
+          ),
+          // Content
+          SafeArea(
+            child: Column(
+              children: [
+                // Header
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 60),
+                  child: Text(
+                    'Records',
+                    style: TextStyle(
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
                     ),
                   ),
                 ),
-              ),
-            ],
+
+                // Main content
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          left: 40, right: 40, bottom: 50, top: 10),
+                      child: GridView.count(
+                        crossAxisCount: 2,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        mainAxisSpacing: 40,
+                        crossAxisSpacing: 40,
+                        children: [
+                          InformationCard(
+                            title: 'User Information Table',
+                            onTap: () {
+                              print('Navigate to user information table');
+                            },
+                          ),
+                          InformationCard(
+                            title: 'Result Information Table',
+                            onTap: () {
+                              print('Navigate to result information table');
+                            },
+                          ),
+                          InformationCard(
+                            title: 'Gold Information Table',
+                            onTap: () {
+                              print('Navigate to activity information table');
+                            },
+                          ),
+                          InformationCard(
+                            title: 'Gem Information Table',
+                            onTap: () {
+                              print('Navigate to settings information table');
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
+        ],
       ),
 
       bottomNavigationBar: Padding(
