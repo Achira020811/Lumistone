@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
-
-class ResultInfoScreen extends StatefulWidget {
-  const ResultInfoScreen({super.key});
-
-  @override
-  _ResultInfoScreenState createState() => _ResultInfoScreenState();
-}
+import 'package:lumistone/MainMenu.dart';
 
 void main() {
   runApp(MyApp());
@@ -21,6 +15,14 @@ class MyApp extends StatelessWidget {
       home: ResultInfoScreen(),
     );
   }
+}
+
+// Result Information Screen
+class ResultInfoScreen extends StatefulWidget {
+  const ResultInfoScreen({super.key});
+
+  @override
+  _ResultInfoScreenState createState() => _ResultInfoScreenState();
 }
 
 class _ResultInfoScreenState extends State<ResultInfoScreen> {
@@ -103,6 +105,35 @@ class _ResultInfoScreenState extends State<ResultInfoScreen> {
                   ],
                 ),
               ),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: 60,
+        color: const Color.fromARGB(255, 0, 0, 0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            IconButton(
+              icon: const Icon(Icons.home, size: 30, color: Colors.white),
+              onPressed: () {
+                // Navigate to Home Page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                );
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.person, size: 30, color: Colors.white),
+              onPressed: () {
+                // Navigate to User Profile Page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                );
+              },
             ),
           ],
         ),
