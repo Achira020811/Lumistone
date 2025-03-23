@@ -9,7 +9,7 @@ class User {
   final String name;
   final String email;
   final String mobile;
-  final String? imageUrl;  // Made optional with nullable type
+  final String? imageUrl;
 
   User({
     required this.name, 
@@ -69,18 +69,31 @@ class CommonPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Stack(
-          children: [
-            Column(
+      body: Stack(
+        children: [
+          // Gradient Background
+          Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.white,
+                    Colors.pink.shade100,
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
+              ),
+          ),
+          // Content
+          SafeArea(
+            child: Column(
               children: [
                 // Header Section
                 Container(
                   width: double.infinity,
                   padding: EdgeInsets.symmetric(vertical: 40),
                   decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 240, 130, 167),
+                    color: Color.fromARGB(255, 243, 182, 216),
                     borderRadius: BorderRadius.vertical(bottom: Radius.circular(15)),
                   ),
                   child: Column(
@@ -123,7 +136,7 @@ class CommonPage extends StatelessWidget {
                   margin: EdgeInsets.symmetric(horizontal: 20),
                   padding: EdgeInsets.all(70),
                   decoration: BoxDecoration(
-                    color: Colors.pink.shade100,
+                    color: Colors.white.withOpacity(0.3),
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: Column(
@@ -147,24 +160,29 @@ class CommonPage extends StatelessWidget {
                     ),
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
+                    backgroundColor: Colors.white.withOpacity(0.8),
                     foregroundColor: Colors.black,
                     padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
                     ),
+                    elevation: 0,
                   ),
                   child: Text(
                     "Log Out",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontSize: 18, 
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
 
                 SizedBox(height: 20),
               ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
       bottomNavigationBar: Container(
         height: 60,
@@ -197,24 +215,30 @@ class CommonPage extends StatelessWidget {
       children: [
         Text(
           "$label : ",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          style: TextStyle(
+            fontWeight: FontWeight.bold, 
+            fontSize: 16,
+            color: Colors.black,
+          ),
         ),
         Text(
           value,
-          style: TextStyle(fontSize: 16),
+          style: TextStyle(
+            fontSize: 16,
+            color: Colors.black,
+          ),
         ),
       ],
     );
   }
 }
 
-// Mock user data fetching function
 Future<User> fetchUserData() async {
   await Future.delayed(Duration(seconds: 2));
   return User(
     name: "JOHN SMITH", 
     email: "ABC123@gmail.com", 
     mobile: "+94xxxxxxxxxx",
-    imageUrl: "https://your-database-image-url.com/profile.jpg", // Add your actual image URL here
+    imageUrl: "https://your-database-image-url.com/profile.jpg",
   );
 }
