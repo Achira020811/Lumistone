@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:lumistone/Profile.dart';
+import 'package:lumistone/database%20copy.dart';
+import 'package:lumistone/gem_database.dart';
+import 'package:lumistone/gold_database.dart';
+import 'package:lumistone/user_info.dart';
 
 void main() {
   runApp(const MyApp2());
@@ -26,12 +31,15 @@ class RecordsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size screenSize = MediaQuery.of(context).size;
+    final bool isSmallScreen = screenSize.width < 600;
+
     return Scaffold(
       body: Stack(
         children: [
           // Background Image with Opacity
           Opacity(
-            opacity: 0.7, // Adjust this value between 0.0 and 1.0
+            opacity: 0.7,
             child: Image.asset(
               'assets/records_new.png',
               fit: BoxFit.fill,
@@ -59,12 +67,12 @@ class RecordsScreen extends StatelessWidget {
             child: Column(
               children: [
                 // Header
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 60),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: screenSize.height * 0.05),
                   child: Text(
                     'Records',
                     style: TextStyle(
-                      fontSize: 32,
+                      fontSize: isSmallScreen ? 24 : 32,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
                     ),
@@ -75,37 +83,84 @@ class RecordsScreen extends StatelessWidget {
                 Expanded(
                   child: SingleChildScrollView(
                     child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: 40, right: 40, bottom: 50, top: 10),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: screenSize.width * 0.05,
+                        vertical: screenSize.height * 0.02,
+                      ),
                       child: GridView.count(
-                        crossAxisCount: 2,
+                        crossAxisCount: 2,  // Always 2 columns
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        mainAxisSpacing: 40,
-                        crossAxisSpacing: 40,
+                        mainAxisSpacing: screenSize.height * 0.03,
+                        crossAxisSpacing: screenSize.width * 0.03,
+                        childAspectRatio: isSmallScreen ? 1.2 : 1.5,
                         children: [
                           InformationCard(
                             title: 'User Information Table',
                             onTap: () {
-                              print('Navigate to user information table');
+                               Navigator.push(
+                                context,
+                                PageRouteBuilder(
+                                  pageBuilder: (context, animation, secondaryAnimation) =>
+                                        MyApp3(),
+                                  transitionsBuilder:
+                                      (context, animation, secondaryAnimation, child) {
+                                    return FadeTransition(opacity: animation, child: child);
+                                  },
+                                  transitionDuration: const Duration(milliseconds: 500),
+                                ),
+                              );
                             },
                           ),
                           InformationCard(
-                            title: 'Result Information Table',
+                            title: 'Water Information Table',
                             onTap: () {
-                              print('Navigate to result information table');
+                              Navigator.push(
+                                context,
+                                PageRouteBuilder(
+                                  pageBuilder: (context, animation, secondaryAnimation) =>
+                                      const MyApp4(),
+                                  transitionsBuilder:
+                                      (context, animation, secondaryAnimation, child) {
+                                    return FadeTransition(opacity: animation, child: child);
+                                  },
+                                  transitionDuration: const Duration(milliseconds: 500),
+                                ),
+                              );
                             },
                           ),
                           InformationCard(
                             title: 'Gold Information Table',
                             onTap: () {
-                              print('Navigate to activity information table');
+                              Navigator.push(
+                                context,
+                                PageRouteBuilder(
+                                  pageBuilder: (context, animation, secondaryAnimation) =>
+                                      const MyApp5(),
+                                  transitionsBuilder:
+                                      (context, animation, secondaryAnimation, child) {
+                                    return FadeTransition(opacity: animation, child: child);
+                                  },
+                                  transitionDuration: const Duration(milliseconds: 500),
+                                ),
+                              );
                             },
                           ),
                           InformationCard(
                             title: 'Gem Information Table',
                             onTap: () {
-                              print('Navigate to settings information table');
+                              Navigator.push(
+                                context,
+                                PageRouteBuilder(
+                                  pageBuilder: (context, animation, secondaryAnimation) =>
+                                      const MyApp6(),
+                                  transitionsBuilder:
+                                      (context, animation, secondaryAnimation, child) {
+                                    return FadeTransition(opacity: animation, child: child);
+                                  },
+                                  transitionDuration: const Duration(milliseconds: 500),
+                                ),
+                              );
                             },
                           ),
                         ],
@@ -120,23 +175,46 @@ class RecordsScreen extends StatelessWidget {
       ),
 
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(bottom: 60),
+        padding: EdgeInsets.only(bottom: screenSize.height * 0.03),
         child: Container(
-          height: 60,
+          height: screenSize.height * 0.08,
           color: const Color.fromARGB(255, 0, 0, 0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               IconButton(
-                icon: const Icon(Icons.home, size: 30, color: Colors.white),
+                icon: Icon(
+                  Icons.home,
+                  size: isSmallScreen ? 24 : 30,
+                  color: Colors.white
+                ),
                 onPressed: () {
-                  print('Navigate to home');
+                  Navigator.pop(context);
                 },
               ),
               IconButton(
-                icon: const Icon(Icons.person, size: 30, color: Colors.white),
+                icon: Icon(
+                  Icons.person,
+                  size: isSmallScreen ? 24 : 30,
+                  color: Colors.white
+                ),
                 onPressed: () {
-                  print('Navigate to profile');
+                  Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (context, animation, secondaryAnimation) =>
+                          const CommonPage(
+                            title: 'User Profile',
+                            email: 'user@example.com',
+                            mobile: '123-456-7890',
+                          ),
+                      transitionsBuilder:
+                          (context, animation, secondaryAnimation, child) {
+                        return FadeTransition(opacity: animation, child: child);
+                      },
+                      transitionDuration: const Duration(milliseconds: 500),
+                    ),
+                  );
                 },
               ),
             ],
@@ -166,6 +244,9 @@ class _InformationCardState extends State<InformationCard> {
 
   @override
   Widget build(BuildContext context) {
+    final Size screenSize = MediaQuery.of(context).size;
+    final bool isSmallScreen = screenSize.width < 600;
+
     return GestureDetector(
       onTapDown: (_) => setState(() => isPressed = true),
       onTapUp: (_) {
@@ -179,7 +260,7 @@ class _InformationCardState extends State<InformationCard> {
           color: isPressed 
               ? Colors.white.withOpacity(0.5) 
               : Colors.white.withOpacity(0.3),
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(screenSize.width * 0.02),
           boxShadow: isPressed
               ? [
                   BoxShadow(
@@ -196,12 +277,12 @@ class _InformationCardState extends State<InformationCard> {
             : Matrix4.identity(),
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(screenSize.width * 0.02),
             child: Text(
               widget.title,
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 18,
+                fontSize: isSmallScreen ? 14 : 18,
                 fontWeight: FontWeight.bold,
                 color: isPressed ? Colors.black87 : Colors.black,
               ),
