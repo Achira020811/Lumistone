@@ -56,32 +56,43 @@ class RecordsScreen extends StatelessWidget {
 
               // Main content
               Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      left: 40, right: 40, bottom: 40, top: 50),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      // User Information Table
-                      InformationCard(
-                        title: 'User Information Table',
-                        onTap: () {
-                          // Navigate to user information table
-                          print('Navigate to user information table');
-                        },
-                      ),
-
-                      const SizedBox(height: 40),
-
-                      // Result Information Table
-                      InformationCard(
-                        title: 'Result Information Table',
-                        onTap: () {
-                          // Navigate to result information table
-                          print('Navigate to result information table');
-                        },
-                      ),
-                    ],
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        left: 40, right: 40, bottom: 50, top: 10),
+                    child: GridView.count(
+                      crossAxisCount: 2,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      mainAxisSpacing: 40,
+                      crossAxisSpacing: 40,
+                      children: [
+                        InformationCard(
+                          title: 'User Information Table',
+                          onTap: () {
+                            print('Navigate to user information table');
+                          },
+                        ),
+                        InformationCard(
+                          title: 'Result Information Table',
+                          onTap: () {
+                            print('Navigate to result information table');
+                          },
+                        ),
+                        InformationCard(
+                          title: 'Activity Information Table',
+                          onTap: () {
+                            print('Navigate to activity information table');
+                          },
+                        ),
+                        InformationCard(
+                          title: 'Settings Information Table',
+                          onTap: () {
+                            print('Navigate to settings information table');
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -90,7 +101,6 @@ class RecordsScreen extends StatelessWidget {
         ),
       ),
 
-      // Bottom Navigation Bar
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(bottom: 60),
         child: Container(
@@ -102,14 +112,12 @@ class RecordsScreen extends StatelessWidget {
               IconButton(
                 icon: const Icon(Icons.home, size: 30, color: Colors.white),
                 onPressed: () {
-                  // Navigate to home
                   print('Navigate to home');
                 },
               ),
               IconButton(
                 icon: const Icon(Icons.person, size: 30, color: Colors.white),
                 onPressed: () {
-                  // Navigate to profile
                   print('Navigate to profile');
                 },
               ),
@@ -121,7 +129,7 @@ class RecordsScreen extends StatelessWidget {
   }
 }
 
-class InformationCard extends StatelessWidget {
+class InformationCard extends StatefulWidget {
   final String title;
   final VoidCallback onTap;
 
@@ -132,24 +140,53 @@ class InformationCard extends StatelessWidget {
   });
 
   @override
+  State<InformationCard> createState() => _InformationCardState();
+}
+
+class _InformationCardState extends State<InformationCard> {
+  bool isPressed = false;
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: double.infinity,
-        height: 100,
+      onTapDown: (_) => setState(() => isPressed = true),
+      onTapUp: (_) {
+        setState(() => isPressed = false);
+        widget.onTap();
+      },
+      onTapCancel: () => setState(() => isPressed = false),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 150),
         decoration: BoxDecoration(
-          color: Colors.white.withOpacity(0.3),
+          color: isPressed 
+              ? Colors.white.withOpacity(0.5) 
+              : Colors.white.withOpacity(0.3),
           borderRadius: BorderRadius.circular(20),
+          boxShadow: isPressed
+              ? [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    blurRadius: 8,
+                    spreadRadius: 1,
+                    offset: const Offset(0, 2),
+                  )
+                ]
+              : [],
         ),
+        transform: isPressed 
+            ? (Matrix4.identity()..scale(0.95))
+            : Matrix4.identity(),
         child: Center(
-          child: Text(
-            title,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              widget.title,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: isPressed ? Colors.black87 : Colors.black,
+              ),
             ),
           ),
         ),
