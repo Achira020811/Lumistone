@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lumistone/MainMenu.dart';
 
 void main() {
   runApp(MyApp());
@@ -47,7 +48,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                   ),
                   Icon(
                     Icons.storage,
-                    color: Colors.white,
+                    color: const Color.fromARGB(255, 255, 255, 255),
                     size: 28,
                   ),
                 ],
@@ -73,14 +74,57 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                 ),
               ),
               SizedBox(height: 20),
-              _buildInfoField('User ID'),
-              _buildTextField('Full Name', fullNameController),
-              _buildInfoField('Email'),
-              _buildInfoField('Phone Number'),
-              _buildTextField('Role', roleController),
-              _buildTextField('Date of Registration', dateController),
+              Expanded(
+                child: Scrollbar(
+                  thickness: 5,
+                  radius: Radius.circular(10),
+                  thumbVisibility: true,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        _buildInfoField('User ID'),
+                        _buildTextField('Full Name', fullNameController),
+                        _buildInfoField('Email'),
+                        _buildInfoField('Phone Number'),
+                        _buildTextField('Role', roleController),
+                        _buildTextField('Date of Registration', dateController),
+                        SizedBox(height: 20),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: 60,
+        color: const Color.fromARGB(255, 0, 0, 0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            IconButton(
+              icon: const Icon(Icons.home, size: 30, color: Colors.white),
+              onPressed: () {
+                // Navigate to Home Page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                );
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.person, size: 30, color: Colors.white),
+              onPressed: () {
+                // Navigate to User Profile Page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                );
+              },
+            ),
+          ],
         ),
       ),
     );
@@ -91,7 +135,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
       padding: const EdgeInsets.symmetric(vertical: 6.0),
       child: Container(
         decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 255, 247, 250),
+          color: const Color.fromARGB(255, 255, 255, 255),
           borderRadius: BorderRadius.circular(20),
         ),
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
