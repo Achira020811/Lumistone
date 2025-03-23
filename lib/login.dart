@@ -220,27 +220,27 @@ class _LoginPageState extends State<LoginPage> {
       labelStyle:
           TextStyle(color: const Color.fromARGB(255, 0, 0, 0), fontSize: 16),
       filled: true,
-      fillColor: Colors.white,
+      fillColor:
+          Colors.white.withOpacity(0.3), // Make background semi-transparent
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(50),
-        borderSide: BorderSide(
-            color: const Color.fromARGB(255, 255, 255, 255), width: 1.5),
+        borderSide: BorderSide(color: Colors.white, width: 1.5),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(50),
-        borderSide: BorderSide(
-            color: const Color.fromARGB(255, 255, 255, 255), width: 1.5),
+        borderSide: BorderSide(color: Colors.white, width: 1.5),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(50),
-        borderSide: BorderSide(
-            color: const Color.fromARGB(255, 255, 255, 255), width: 2.0),
+        borderSide: BorderSide(color: Colors.white, width: 2.0),
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(50),
-        borderSide: BorderSide(
-            color: const Color.fromARGB(255, 255, 255, 255), width: 1.5),
+        borderSide: BorderSide(color: Colors.white, width: 1.5),
       ),
+      // Add these to ensure text is visible on transparent background
+      hintStyle: TextStyle(color: Colors.white.withOpacity(0.7)),
+      contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
     );
   }
 }
