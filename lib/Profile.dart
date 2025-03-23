@@ -131,19 +131,6 @@ class CommonPage extends StatelessWidget {
               ],
             ),
 
-            // Profile Icon at Bottom Right
-            Positioned(
-              bottom: 20,
-              right: 20,
-              child: FloatingActionButton(
-                backgroundColor: Colors.black,
-                onPressed: () {
-                  // Navigate to Profile Screen
-                },
-                child: Icon(Icons.account_circle,
-                    size: 30, color: const Color.fromARGB(255, 255, 255, 255)),
-              ),
-            ),
           ],
         ),
       ),
