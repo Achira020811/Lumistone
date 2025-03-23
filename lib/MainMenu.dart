@@ -76,86 +76,81 @@ class _HomePageState extends State<HomePage>
     return Scaffold(
       backgroundColor: Colors.black,
       body: SafeArea(
-        child: Stack(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Colors.white,
-                    Colors.pink.shade100,
-                  ],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Colors.white,
+                Colors.pink.shade100,
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+          child: Column(
+            children: [
+              const SizedBox(height: 20),
+              _buildHeader(),
+              Expanded(
+                child: AnimatedBuilder(
+                  animation: _controller,
+                  builder: (context, child) {
+                    return GridView.count(
+                      crossAxisCount: 2,
+                      padding: const EdgeInsets.all(20),
+                      crossAxisSpacing: 20,
+                      mainAxisSpacing: 20,
+                      children: [
+                        _buildAnimatedMenuItem(
+                          "Water Detection",
+                          "assets/Water Drop.png",
+                          85.0,
+                          85.0,
+                          const WaterDetectionScreen(),
+                          0,
+                        ),
+                        _buildAnimatedMenuItem(
+                          "Records",
+                          "assets/database.png",
+                          70.0,
+                          70.0,
+                          const RecordsScreen(),
+                          1,
+                        ),
+                        _buildAnimatedMenuItem(
+                          "Gem Detection",
+                          "assets/gem.png",
+                          70.0,
+                          70.0,
+                          const GemDetectionScreen(),
+                          2,
+                        ),
+                        _buildAnimatedMenuItem(
+                          "Notification",
+                          "assets/notification-bell.png",
+                          65.0,
+                          65.0,
+                          const NotificationScreen(),
+                          3,
+                        ),
+                        _buildAnimatedMenuItem(
+                          "Gold Detection",
+                          "assets/Gold Detection.png",
+                          75.0,
+                          75.0,
+                          const GoldDetectionScreen(),
+                          4,
+                        ),
+                      ],
+                    );
+                  },
                 ),
               ),
-              child: Column(
-                children: [
-                  const SizedBox(height: 20),
-                  _buildHeader(),
-                  Expanded(
-                    child: AnimatedBuilder(
-                      animation: _controller,
-                      builder: (context, child) {
-                        return GridView.count(
-                          crossAxisCount: 2,
-                          padding: const EdgeInsets.all(20),
-                          crossAxisSpacing: 20,
-                          mainAxisSpacing: 20,
-                          children: [
-                            _buildAnimatedMenuItem(
-                              "Water Detection",
-                              "assets/Water Drop.png",
-                              85.0,
-                              85.0,
-                              const WaterDetectionScreen(),
-                              0,
-                            ),
-                            _buildAnimatedMenuItem(
-                              "Records",
-                              "assets/database.png",
-                              70.0,
-                              70.0,
-                              const RecordsScreen(),
-                              1,
-                            ),
-                            _buildAnimatedMenuItem(
-                              "Gem Detection",
-                              "assets/gem.png",
-                              70.0,
-                              70.0,
-                              const GemDetectionScreen(),
-                              2,
-                            ),
-                            _buildAnimatedMenuItem(
-                              "Notification",
-                              "assets/notification-bell.png",
-                              65.0,
-                              65.0,
-                              const NotificationScreen(),
-                              3,
-                            ),
-                            _buildAnimatedMenuItem(
-                              "Gold Detection",
-                              "assets/Gold Detection.png",
-                              75.0,
-                              75.0,
-                              const GoldDetectionScreen(),
-                              4,
-                            ),
-                          ],
-                        );
-                      },
-                    ),
-                  ),
-                  _buildBottomProfileIcon(),
-                ],
-              ),
-            ),
-            _buildProfileButton(),
-          ],
+            ],
+          ),
         ),
       ),
+      bottomNavigationBar: _buildBottomNavigationBar(),
     );
   }
 
@@ -187,6 +182,48 @@ class _HomePageState extends State<HomePage>
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildBottomNavigationBar() {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 60),
+      child: Container(
+        height: 60,
+        color: Colors.black,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            IconButton(
+              icon: const Icon(Icons.home, size: 30, color: Colors.white),
+              onPressed: () {
+                // Already on home page
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.person, size: 30, color: Colors.white),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  PageRouteBuilder(
+                    pageBuilder: (context, animation, secondaryAnimation) =>
+                        const CommonPage(
+                      title: 'User Profile',
+                      email: 'user@example.com',
+                      mobile: '123-456-7890',
+                    ),
+                    transitionsBuilder:
+                        (context, animation, secondaryAnimation, child) {
+                      return FadeTransition(opacity: animation, child: child);
+                    },
+                    transitionDuration: const Duration(milliseconds: 500),
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -329,53 +366,8 @@ class _HomePageState extends State<HomePage>
       ),
     );
   }
-
-  Widget _buildBottomProfileIcon() {
-    return Container(
-      height: 60,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [Colors.pink.shade100, Colors.black],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildProfileButton() {
-    return Positioned(
-      bottom: 3.0,
-      right: 16.0,
-      child: FadeTransition(
-        opacity: _fadeAnimation,
-        child: IconButton(
-          icon: const Icon(Icons.account_circle, size: 40, color: Colors.white),
-          onPressed: () {
-            Navigator.push(
-              context,
-              PageRouteBuilder(
-                pageBuilder: (context, animation, secondaryAnimation) =>
-                    const CommonPage(
-                  title: 'User Profile',
-                  email: 'user@example.com',
-                  mobile: '123-456-7890',
-                ),
-                transitionsBuilder:
-                    (context, animation, secondaryAnimation, child) {
-                  return FadeTransition(opacity: animation, child: child);
-                },
-                transitionDuration: const Duration(milliseconds: 500),
-              ),
-            );
-          },
-        ),
-      ),
-    );
-  }
 }
 
-// Screen classes remain the same
 class WaterDetectionScreen extends StatelessWidget {
   const WaterDetectionScreen({super.key});
 
