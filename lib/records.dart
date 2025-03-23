@@ -27,17 +27,19 @@ class RecordsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              const Color.fromARGB(255, 246, 223, 231),
-              Colors.pink.shade300,
-            ],
-          ),
-        ),
+     body: Container(
+  decoration: const BoxDecoration(
+    gradient: LinearGradient(
+      colors: [
+        Color.fromARGB(255, 250, 219, 230),
+        Color.fromARGB(255, 243, 182, 216),
+        Color.fromARGB(255, 179, 123, 154),
+        Color.fromARGB(255, 146, 73, 114),
+      ],
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+    ),
+  ),
         child: SafeArea(
           child: Column(
             children: [
