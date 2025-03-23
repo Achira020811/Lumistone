@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 void main() {
   runApp(const LumiStoneApp());
 }
@@ -24,7 +23,8 @@ class LocationPage extends StatefulWidget {
   State<LocationPage> createState() => _LocationPageState();
 }
 
-class _LocationPageState extends State<LocationPage> with SingleTickerProviderStateMixin {
+class _LocationPageState extends State<LocationPage>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _bounceAnimation;
   late Animation<double> _rotateAnimation;
@@ -63,88 +63,107 @@ class _LocationPageState extends State<LocationPage> with SingleTickerProviderSt
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const SizedBox(height: 20),
-            Column(
+      body: Stack(
+        children: [
+          // Gradient Background
+          Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Color.fromARGB(255, 250, 219, 230),
+                  Color.fromARGB(255, 243, 182, 216),
+                  Color.fromARGB(255, 179, 123, 154),
+                  Color.fromARGB(255, 146, 73, 114),
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
+            ),
+          ),
+          // Content
+          SafeArea(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                AnimatedBuilder(
-                  animation: _rotateAnimation,
-                  builder: (context, child) {
-                    return Transform(
-                      alignment: Alignment.center,
-                      transform: Matrix4.identity()
-                        ..setEntry(3, 2, 0.001)
-                        ..rotateY(_rotateAnimation.value * 2 * 3.14159),
-                      child: Transform.translate(
-                        offset: Offset(0, _bounceAnimation.value),
-                        child: Image.asset(
-                          'assets/location_icon.png',
-                          height: 300,
-                        ),
-                      ),
-                    );
-                  },
-                ),
-                const SizedBox(height: 15),
-                const Text(
-                  'Enter Your Location,',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black,
-                  ),
-                ),
                 const SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Container(
-                    height: 100,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Colors.pink.shade100,
-                      borderRadius: BorderRadius.circular(10),
+                Column(
+                  children: [
+                    AnimatedBuilder(
+                      animation: _rotateAnimation,
+                      builder: (context, child) {
+                        return Transform(
+                          alignment: Alignment.center,
+                          transform: Matrix4.identity()
+                            ..setEntry(3, 2, 0.001)
+                            ..rotateY(_rotateAnimation.value * 2 * 3.14159),
+                          child: Transform.translate(
+                            offset: Offset(0, _bounceAnimation.value),
+                            child: Image.asset(
+                              'assets/location_icon.png',
+                              height: 300,
+                            ),
+                          ),
+                        );
+                      },
                     ),
-                    child: const Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: TextField(
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Enter your location here',
-                          hintStyle: TextStyle(color: Colors.black54),
+                    const SizedBox(height: 15),
+                    const Text(
+                      'Enter Your Location,',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Container(
+                        height: 100,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.5),
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.all(10.0),
+                          child: TextField(
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: 'Enter your location here',
+                              hintStyle: TextStyle(color: Colors.black54),
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ),
-                const SizedBox(height: 30),
-                ElevatedButton(
-                  onPressed: () {
-              
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.pink.shade100,
-                    minimumSize: const Size(200, 50),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                    const SizedBox(height: 30),
+                    ElevatedButton(
+                      onPressed: () {
+                        // Add navigation here
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white70,
+                        minimumSize: const Size(200, 50),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                      ),
+                      child: const Text(
+                        'Continue',
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.black87,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                     ),
-                  ),
-                  child: const Text(
-                    'Continue',
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.black87,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
+                  ],
                 ),
               ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
