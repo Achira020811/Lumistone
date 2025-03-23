@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lumistone/Profile.dart';
+import 'package:lumistone/MainMenu.dart';
 import 'package:lumistone/database%20copy.dart';
 import 'package:lumistone/gem_database.dart';
 import 'package:lumistone/gold_database.dart';
@@ -68,7 +68,8 @@ class RecordsScreen extends StatelessWidget {
               children: [
                 // Header
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: screenSize.height * 0.05),
+                  padding:
+                      EdgeInsets.symmetric(vertical: screenSize.height * 0.05),
                   child: Text(
                     'Records',
                     style: TextStyle(
@@ -88,7 +89,7 @@ class RecordsScreen extends StatelessWidget {
                         vertical: screenSize.height * 0.02,
                       ),
                       child: GridView.count(
-                        crossAxisCount: 2,  // Always 2 columns
+                        crossAxisCount: 2, // Always 2 columns
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         mainAxisSpacing: screenSize.height * 0.03,
@@ -98,16 +99,19 @@ class RecordsScreen extends StatelessWidget {
                           InformationCard(
                             title: 'User Information Table',
                             onTap: () {
-                               Navigator.push(
+                              Navigator.push(
                                 context,
                                 PageRouteBuilder(
-                                  pageBuilder: (context, animation, secondaryAnimation) =>
-                                        MyApp3(),
-                                  transitionsBuilder:
-                                      (context, animation, secondaryAnimation, child) {
-                                    return FadeTransition(opacity: animation, child: child);
+                                  pageBuilder: (context, animation,
+                                          secondaryAnimation) =>
+                                      MyApp3(),
+                                  transitionsBuilder: (context, animation,
+                                      secondaryAnimation, child) {
+                                    return FadeTransition(
+                                        opacity: animation, child: child);
                                   },
-                                  transitionDuration: const Duration(milliseconds: 500),
+                                  transitionDuration:
+                                      const Duration(milliseconds: 500),
                                 ),
                               );
                             },
@@ -118,13 +122,16 @@ class RecordsScreen extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 PageRouteBuilder(
-                                  pageBuilder: (context, animation, secondaryAnimation) =>
+                                  pageBuilder: (context, animation,
+                                          secondaryAnimation) =>
                                       const MyApp4(),
-                                  transitionsBuilder:
-                                      (context, animation, secondaryAnimation, child) {
-                                    return FadeTransition(opacity: animation, child: child);
+                                  transitionsBuilder: (context, animation,
+                                      secondaryAnimation, child) {
+                                    return FadeTransition(
+                                        opacity: animation, child: child);
                                   },
-                                  transitionDuration: const Duration(milliseconds: 500),
+                                  transitionDuration:
+                                      const Duration(milliseconds: 500),
                                 ),
                               );
                             },
@@ -135,13 +142,16 @@ class RecordsScreen extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 PageRouteBuilder(
-                                  pageBuilder: (context, animation, secondaryAnimation) =>
+                                  pageBuilder: (context, animation,
+                                          secondaryAnimation) =>
                                       const MyApp5(),
-                                  transitionsBuilder:
-                                      (context, animation, secondaryAnimation, child) {
-                                    return FadeTransition(opacity: animation, child: child);
+                                  transitionsBuilder: (context, animation,
+                                      secondaryAnimation, child) {
+                                    return FadeTransition(
+                                        opacity: animation, child: child);
                                   },
-                                  transitionDuration: const Duration(milliseconds: 500),
+                                  transitionDuration:
+                                      const Duration(milliseconds: 500),
                                 ),
                               );
                             },
@@ -152,13 +162,16 @@ class RecordsScreen extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 PageRouteBuilder(
-                                  pageBuilder: (context, animation, secondaryAnimation) =>
+                                  pageBuilder: (context, animation,
+                                          secondaryAnimation) =>
                                       const MyApp6(),
-                                  transitionsBuilder:
-                                      (context, animation, secondaryAnimation, child) {
-                                    return FadeTransition(opacity: animation, child: child);
+                                  transitionsBuilder: (context, animation,
+                                      secondaryAnimation, child) {
+                                    return FadeTransition(
+                                        opacity: animation, child: child);
                                   },
-                                  transitionDuration: const Duration(milliseconds: 500),
+                                  transitionDuration:
+                                      const Duration(milliseconds: 500),
                                 ),
                               );
                             },
@@ -173,52 +186,35 @@ class RecordsScreen extends StatelessWidget {
           ),
         ],
       ),
-
-      bottomNavigationBar: Padding(
-        padding: EdgeInsets.only(bottom: screenSize.height * 0.03),
-        child: Container(
-          height: screenSize.height * 0.08,
-          color: const Color.fromARGB(255, 0, 0, 0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              IconButton(
-                icon: Icon(
-                  Icons.home,
-                  size: isSmallScreen ? 24 : 30,
-                  color: Colors.white
-                ),
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              ),
-              IconButton(
-                icon: Icon(
-                  Icons.person,
-                  size: isSmallScreen ? 24 : 30,
-                  color: Colors.white
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    PageRouteBuilder(
-                      pageBuilder: (context, animation, secondaryAnimation) =>
-                          const CommonPage(
-                            title: 'User Profile',
-                            email: 'user@example.com',
-                            mobile: '123-456-7890',
-                          ),
-                      transitionsBuilder:
-                          (context, animation, secondaryAnimation, child) {
-                        return FadeTransition(opacity: animation, child: child);
-                      },
-                      transitionDuration: const Duration(milliseconds: 500),
-                    ),
-                  );
-                },
-              ),
-            ],
-          ),
+      bottomNavigationBar: Container(
+        height: screenSize.height * 0.08,
+        color: const Color.fromARGB(255, 0, 0, 0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            IconButton(
+              icon: const Icon(Icons.home, size: 30, color: Colors.white),
+              onPressed: () {
+                // Navigate to home
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                );
+                print('Navigate to home');
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.person, size: 30, color: Colors.white),
+              onPressed: () {
+                // Navigate to profile
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                );
+                print('Navigate to profile');
+              },
+            ),
+          ],
         ),
       ),
     );
@@ -257,8 +253,8 @@ class _InformationCardState extends State<InformationCard> {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 150),
         decoration: BoxDecoration(
-          color: isPressed 
-              ? Colors.white.withOpacity(0.5) 
+          color: isPressed
+              ? Colors.white.withOpacity(0.5)
               : Colors.white.withOpacity(0.3),
           borderRadius: BorderRadius.circular(screenSize.width * 0.02),
           boxShadow: isPressed
@@ -272,9 +268,8 @@ class _InformationCardState extends State<InformationCard> {
                 ]
               : [],
         ),
-        transform: isPressed 
-            ? (Matrix4.identity()..scale(0.95))
-            : Matrix4.identity(),
+        transform:
+            isPressed ? (Matrix4.identity()..scale(0.95)) : Matrix4.identity(),
         child: Center(
           child: Padding(
             padding: EdgeInsets.all(screenSize.width * 0.02),

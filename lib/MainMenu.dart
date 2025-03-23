@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lumistone/Profile.dart';
 import 'package:lumistone/location%20page.dart';
 import 'package:lumistone/records.dart';
 
@@ -189,43 +188,35 @@ class _HomePageState extends State<HomePage>
   }
 
   Widget _buildBottomNavigationBar() {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 60),
-      child: Container(
-        height: 60,
-        color: Colors.black,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            IconButton(
-              icon: const Icon(Icons.home, size: 30, color: Colors.white),
-              onPressed: () {
-                // Already on home page
-              },
-            ),
-            IconButton(
-              icon: const Icon(Icons.person, size: 30, color: Colors.white),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  PageRouteBuilder(
-                    pageBuilder: (context, animation, secondaryAnimation) =>
-                        const CommonPage(
-                      title: 'User Profile',
-                      email: 'user@example.com',
-                      mobile: '123-456-7890',
-                    ),
-                    transitionsBuilder:
-                        (context, animation, secondaryAnimation, child) {
-                      return FadeTransition(opacity: animation, child: child);
-                    },
-                    transitionDuration: const Duration(milliseconds: 500),
-                  ),
-                );
-              },
-            ),
-          ],
-        ),
+    return Container(
+      height: 60,
+      color: Colors.black,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          IconButton(
+            icon: const Icon(Icons.home, size: 30, color: Colors.white),
+            onPressed: () {
+              // Navigate to home
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => HomePage()),
+              );
+              print('Navigate to home');
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.person, size: 30, color: Colors.white),
+            onPressed: () {
+              // Navigate to profile
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => HomePage()),
+              );
+              print('Navigate to profile');
+            },
+          ),
+        ],
       ),
     );
   }
