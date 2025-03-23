@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lumistone/MainMenu.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,60 +28,118 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 230, 84, 166),
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Database',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                  Icon(
-                    Icons.storage,
-                    color: Colors.white,
-                    size: 28,
-                  ),
-                ],
-              ),
-              SizedBox(height: 4),
-              Text(
-                'User Information Table,',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.white70,
-                ),
-              ),
-              SizedBox(height: 20),
-              Center(
-                child: CircleAvatar(
-                  radius: 40,
-                  backgroundColor: Colors.black,
-                  child: Icon(
-                    Icons.person,
-                    color: Colors.white,
-                    size: 50,
-                  ),
-                ),
-              ),
-              SizedBox(height: 20),
-              _buildInfoField('User ID'),
-              _buildTextField('Full Name', fullNameController),
-              _buildInfoField('Email'),
-              _buildInfoField('Phone Number'),
-              _buildTextField('Role', roleController),
-              _buildTextField('Date of Registration', dateController),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.white,
+              const Color.fromARGB(210, 255, 237, 246),
+              const Color.fromARGB(210, 251, 180, 217),
+              const Color.fromARGB(210, 255, 173, 216),
+              const Color.fromARGB(229, 247, 132, 191),
             ],
           ),
+        ),
+        child: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Database',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: const Color.fromARGB(255, 0, 0, 0),
+                      ),
+                    ),
+                    Icon(
+                      Icons.storage,
+                      color: const Color.fromARGB(255, 0, 0, 0),
+                      size: 28,
+                    ),
+                  ],
+                ),
+                SizedBox(height: 4),
+                Text(
+                  'User Information Table,',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: const Color.fromARGB(179, 0, 0, 0),
+                  ),
+                ),
+                SizedBox(height: 30),
+                Center(
+                  child: CircleAvatar(
+                    radius: 50,
+                    backgroundColor: Colors.black,
+                    child: Icon(
+                      Icons.person,
+                      color: Colors.white,
+                      size: 50,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+                Expanded(
+                  child: Scrollbar(
+                    thickness: 5,
+                    radius: Radius.circular(10),
+                    thumbVisibility: true,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          _buildInfoField('User ID'),
+                          _buildTextField('Full Name', fullNameController),
+                          _buildInfoField('Email'),
+                          _buildInfoField('Phone Number'),
+                          _buildTextField('Role', roleController),
+                          _buildTextField(
+                              'Date of Registration', dateController),
+                          SizedBox(height: 20),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: 60,
+        color: const Color.fromARGB(255, 0, 0, 0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            IconButton(
+              icon: const Icon(Icons.home, size: 30, color: Colors.white),
+              onPressed: () {
+                // Navigate to Home Page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                );
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.person, size: 30, color: Colors.white),
+              onPressed: () {
+                // Navigate to User Profile Page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                );
+              },
+            ),
+          ],
         ),
       ),
     );
@@ -91,7 +150,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
       padding: const EdgeInsets.symmetric(vertical: 6.0),
       child: Container(
         decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 255, 247, 250),
+          color: Colors.white.withOpacity(0.4), // Transparent background
           borderRadius: BorderRadius.circular(20),
         ),
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
@@ -118,7 +177,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
       padding: const EdgeInsets.symmetric(vertical: 6.0),
       child: Container(
         decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 255, 247, 250),
+          color: Colors.white.withOpacity(0.4), // Transparent background
           borderRadius: BorderRadius.circular(20),
         ),
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),

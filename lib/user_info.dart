@@ -1,11 +1,5 @@
 import 'package:flutter/material.dart';
-
-class ResultInfoScreen extends StatefulWidget {
-  const ResultInfoScreen({super.key});
-
-  @override
-  _ResultInfoScreenState createState() => _ResultInfoScreenState();
-}
+import 'package:lumistone/MainMenu.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,6 +17,14 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// Result Information Screen
+class ResultInfoScreen extends StatefulWidget {
+  const ResultInfoScreen({super.key});
+
+  @override
+  _ResultInfoScreenState createState() => _ResultInfoScreenState();
+}
+
 class _ResultInfoScreenState extends State<ResultInfoScreen> {
   String? _selectedZone;
   String? _selectedDepth;
@@ -31,78 +33,129 @@ class _ResultInfoScreenState extends State<ResultInfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 230, 84, 166),
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Database',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                  Icon(
-                    Icons.storage,
-                    color: Colors.white,
-                    size: 28,
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: Text(
-                'Result Information Table,',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.white70,
-                ),
-              ),
-            ),
-            SizedBox(height: 10),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: Image.asset(
-                'assets/pic1.jpg',
-                height: 150,
-                width: double.infinity,
-                fit: BoxFit.cover,
-              ),
-            ),
-            SizedBox(height: 10),
-            Expanded(
-              child: Padding(
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.white,
+              const Color.fromARGB(210, 255, 237, 246),
+              const Color.fromARGB(210, 250, 199, 225),
+              const Color.fromARGB(210, 249, 178, 215),
+              const Color.fromARGB(229, 247, 132, 191),
+            ],
+          ),
+        ),
+        child: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
                 padding: EdgeInsets.all(16.0),
-                child: ListView(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    _buildInfoField('Scan ID'),
-                    _buildInfoField('Data'),
-                    _buildInfoField('Time'),
-                    _buildRadioField(
-                        'Zone', ['A', 'B', 'C', 'D'], _selectedZone, (value) {
-                      setState(() {
-                        _selectedZone = value;
-                      });
-                    }),
-                    _buildRadioField('Depth Scanned', ['100m', '200m', '300m'],
-                        _selectedDepth, (value) {
-                      setState(() {
-                        _selectedDepth = value;
-                      });
-                    }),
-                    _buildInfoField('Result'),
-                    _buildRemarkField(),
+                    Text(
+                      'Database',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: const Color.fromARGB(200, 0, 0, 0),
+                      ),
+                    ),
+                    Icon(
+                      Icons.storage,
+                      color: const Color.fromARGB(255, 0, 0, 0),
+                      size: 28,
+                    ),
                   ],
                 ),
               ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                child: Text(
+                  'Result Information Table,',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: const Color.fromARGB(179, 1, 1, 1),
+                  ),
+                ),
+              ),
+              SizedBox(height: 10),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.asset(
+                  'assets/pic1.jpg',
+                  height: 150,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
+              ),
+              SizedBox(height: 10),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: ListView(
+                    children: [
+                      _buildInfoField('Scan ID'),
+                      _buildInfoField('Data'),
+                      _buildInfoField('Time'),
+                      _buildRadioField(
+                        'Zone',
+                        ['A', 'B', 'C', 'D'],
+                        _selectedZone,
+                        (value) {
+                          setState(() {
+                            _selectedZone = value;
+                          });
+                        },
+                      ),
+                      _buildRadioField(
+                        'Depth Scanned',
+                        ['100m', '200m', '300m'],
+                        _selectedDepth,
+                        (value) {
+                          setState(() {
+                            _selectedDepth = value;
+                          });
+                        },
+                      ),
+                      _buildInfoField('Result'),
+                      _buildRemarkField(),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: 60,
+        color: const Color.fromARGB(255, 0, 0, 0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            IconButton(
+              icon: const Icon(Icons.home, size: 30, color: Colors.white),
+              onPressed: () {
+                // Navigate to Home Page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                );
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.person, size: 30, color: Colors.white),
+              onPressed: () {
+                // Navigate to User Profile Page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                );
+              },
             ),
           ],
         ),
@@ -115,7 +168,7 @@ class _ResultInfoScreenState extends State<ResultInfoScreen> {
       padding: const EdgeInsets.symmetric(vertical: 6.0),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Colors.white.withOpacity(0.4), // Transparent background
           borderRadius: BorderRadius.circular(20),
         ),
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
@@ -143,7 +196,7 @@ class _ResultInfoScreenState extends State<ResultInfoScreen> {
       padding: const EdgeInsets.symmetric(vertical: 6.0),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Colors.white.withOpacity(0.4), // Transparent background
           borderRadius: BorderRadius.circular(20),
         ),
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
@@ -167,7 +220,7 @@ class _ResultInfoScreenState extends State<ResultInfoScreen> {
                       value: option,
                       groupValue: selectedValue,
                       onChanged: onChanged,
-                      activeColor: Colors.purple,
+                      activeColor: const Color.fromARGB(193, 244, 1, 179),
                     ),
                     Text(option, style: TextStyle(color: Colors.black)),
                   ],
@@ -185,7 +238,7 @@ class _ResultInfoScreenState extends State<ResultInfoScreen> {
       padding: const EdgeInsets.symmetric(vertical: 6.0),
       child: Container(
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Colors.white.withOpacity(0.4), // Transparent background
           borderRadius: BorderRadius.circular(20),
         ),
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
@@ -204,6 +257,7 @@ class _ResultInfoScreenState extends State<ResultInfoScreen> {
               controller: _remarkController,
               decoration: InputDecoration(
                 hintText: 'Enter your remark here...',
+                hintStyle: TextStyle(color: Colors.black54),
                 border: InputBorder.none,
               ),
               style: TextStyle(color: Colors.black),
