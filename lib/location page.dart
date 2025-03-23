@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 void main() {
   runApp(const LumiStoneApp());
 }
@@ -16,28 +17,53 @@ class LumiStoneApp extends StatelessWidget {
   }
 }
 
-class LocationPage extends StatelessWidget {
+class LocationPage extends StatefulWidget {
   const LocationPage({super.key});
+
+  @override
+  State<LocationPage> createState() => _LocationPageState();
+}
+
+class _LocationPageState extends State<LocationPage> with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _bounceAnimation;
+  late Animation<double> _rotateAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(seconds: 2),
+      vsync: this,
+    )..repeat();
+
+    _bounceAnimation = Tween<double>(
+      begin: 0.0,
+      end: 24.0,
+    ).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeInOut,
+    ));
+
+    _rotateAnimation = Tween<double>(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.linear,
+    ));
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      // bottomNavigationBar: BottomNavigationBar(
-      //   backgroundColor: Colors.black,
-      //   selectedItemColor: Colors.white,
-      //   unselectedItemColor: Colors.white70,
-      //   items: const [
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.home),
-      //       label: '',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.person),
-      //       label: '',
-      //     ),
-      //   ],
-      // ),
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -45,11 +71,25 @@ class LocationPage extends StatelessWidget {
             const SizedBox(height: 20),
             Column(
               children: [
-                Image.asset(
-                  'assets/gem_logo2.png', 
-                  height: 200,
+                AnimatedBuilder(
+                  animation: _rotateAnimation,
+                  builder: (context, child) {
+                    return Transform(
+                      alignment: Alignment.center,
+                      transform: Matrix4.identity()
+                        ..setEntry(3, 2, 0.001)
+                        ..rotateY(_rotateAnimation.value * 2 * 3.14159),
+                      child: Transform.translate(
+                        offset: Offset(0, _bounceAnimation.value),
+                        child: Image.asset(
+                          'assets/location_icon.png',
+                          height: 300,
+                        ),
+                      ),
+                    );
+                  },
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 15),
                 const Text(
                   'Enter Your Location,',
                   style: TextStyle(
@@ -77,6 +117,27 @@ class LocationPage extends StatelessWidget {
                           hintStyle: TextStyle(color: Colors.black54),
                         ),
                       ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 30),
+                ElevatedButton(
+                  onPressed: () {
+              
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.pink.shade100,
+                    minimumSize: const Size(200, 50),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  child: const Text(
+                    'Continue',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.black87,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 ),
