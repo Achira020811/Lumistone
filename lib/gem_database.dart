@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lumistone/MainMenu.dart';
+import 'package:lumistone/Profile.dart';
 
 void main() {
   runApp(MyApp6());
@@ -136,26 +137,30 @@ class _ResultInfoScreenState extends State<ResultInfoScreen> {
         color: const Color.fromARGB(255, 0, 0, 0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            IconButton(
-              icon: const Icon(Icons.home, size: 30, color: Colors.white),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomePage()),
-                );
-              },
-            ),
-            IconButton(
-              icon: const Icon(Icons.person, size: 30, color: Colors.white),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomePage()),
-                );
-              },
-            ),
-          ],
+          children:  [
+          IconButton(
+            icon: const Icon(Icons.home, size: 30, color: Colors.white),
+            onPressed: () {
+              // Navigate to home
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => HomePage()),
+              );
+              print('Navigate to home');
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.person, size: 30, color: Colors.white),
+            onPressed: () {
+              // Navigate to profile
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => MyApp7()),
+              );
+              print('Navigate to profile');
+            },
+          ),
+        ],
         ),
       ),
     );

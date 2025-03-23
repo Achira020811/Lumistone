@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:lumistone/MainMenu.dart';
 import 'package:lumistone/main_log.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MyApp7());
 }
 
 class User {
@@ -19,8 +20,8 @@ class User {
   });
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp7 extends StatelessWidget {
+  const MyApp7({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -189,22 +190,30 @@ class CommonPage extends StatelessWidget {
         color: const Color.fromARGB(255, 0, 0, 0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            IconButton(
-              icon: const Icon(Icons.home, size: 30, color: Colors.white),
-              onPressed: () {
-                // Navigate to home
-                print('Navigate to home');
-              },
-            ),
-            IconButton(
-              icon: const Icon(Icons.person, size: 30, color: Colors.white),
-              onPressed: () {
-                // Navigate to profile
-                print('Navigate to profile');
-              },
-            ),
-          ],
+          children:  [
+          IconButton(
+            icon: const Icon(Icons.home, size: 30, color: Colors.white),
+            onPressed: () {
+              // Navigate to home
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => HomePage()),
+              );
+              print('Navigate to home');
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.person, size: 30, color: Colors.white),
+            onPressed: () {
+              // Navigate to profile
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => MyApp7()),
+              );
+              print('Navigate to profile');
+            },
+          ),
+        ],
         ),
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 import 'package:lumistone/MainMenu.dart';
+import 'package:lumistone/Profile.dart';
 
 void main() {
   runApp(const GoldDetectionApp());
@@ -122,30 +123,30 @@ class _GoldDetectionScreenState extends State<GoldDetectionScreen> {
         color: const Color.fromARGB(255, 0, 0, 0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            IconButton(
-              icon: const Icon(Icons.home, size: 30, color: Colors.white),
-              onPressed: () {
-                // Navigate to home
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomePage()),
-                );
-                print('Navigate to home');
-              },
-            ),
-            IconButton(
-              icon: const Icon(Icons.person, size: 30, color: Colors.white),
-              onPressed: () {
-                // Navigate to profile
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomePage()),
-                );
-                print('Navigate to profile');
-              },
-            ),
-          ],
+          children:  [
+          IconButton(
+            icon: const Icon(Icons.home, size: 30, color: Colors.white),
+            onPressed: () {
+              // Navigate to home
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => HomePage()),
+              );
+              print('Navigate to home');
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.person, size: 30, color: Colors.white),
+            onPressed: () {
+              // Navigate to profile
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => MyApp7()),
+              );
+              print('Navigate to profile');
+            },
+          ),
+        ],
         ),
       ),
     );

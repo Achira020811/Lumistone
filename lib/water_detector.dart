@@ -4,6 +4,8 @@ import 'package:lumistone/MainMenu.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:lumistone/Profile.dart';
+
 void main() {
   runApp(const WaterDetectionApp());
 }
@@ -146,29 +148,29 @@ class _WaterDetectionScreenState extends State<WaterDetectionScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            IconButton(
-              icon: const Icon(Icons.home, size: 30, color: Colors.white),
-              onPressed: () {
-                // Navigate to home
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomePage()),
-                );
-                print('Navigate to home');
-              },
-            ),
-            IconButton(
-              icon: const Icon(Icons.person, size: 30, color: Colors.white),
-              onPressed: () {
-                // Navigate to profile
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomePage()),
-                );
-                print('Navigate to profile');
-              },
-            ),
-          ],
+          IconButton(
+            icon: const Icon(Icons.home, size: 30, color: Colors.white),
+            onPressed: () {
+              // Navigate to home
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => HomePage()),
+              );
+              print('Navigate to home');
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.person, size: 30, color: Colors.white),
+            onPressed: () {
+              // Navigate to profile
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => MyApp7()),
+              );
+              print('Navigate to profile');
+            },
+          ),
+        ],
         ),
       ),
     );
