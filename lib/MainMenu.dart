@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lumistone/Profile.dart';
 import 'package:lumistone/location%20page.dart';
 import 'package:lumistone/records.dart';
 
@@ -211,7 +212,7 @@ class _HomePageState extends State<HomePage>
               // Navigate to profile
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => HomePage()),
+                MaterialPageRoute(builder: (context) => MyApp7()),
               );
               print('Navigate to profile');
             },
