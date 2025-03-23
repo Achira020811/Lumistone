@@ -243,7 +243,7 @@ class CommonPage extends StatelessWidget {
 }
 
 Future<User> fetchUserData() async {
-  await Future.delayed(Duration(seconds: 2));
+  await Future.delayed(Duration(seconds:0));
   return User(
     name: "JOHN SMITH", 
     email: "ABC123@gmail.com", 
