@@ -81,7 +81,10 @@ class _HomePageState extends State<HomePage>
             gradient: LinearGradient(
               colors: [
                 Colors.white,
-                Colors.pink.shade100,
+                const Color.fromARGB(210, 255, 237, 246),
+                const Color.fromARGB(210, 250, 199, 225),
+                const Color.fromARGB(210, 249, 178, 215),
+                const Color.fromARGB(229, 247, 132, 191),
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -395,7 +398,6 @@ class GoldDetectionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) => const LocationPage();
 }
-
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});
